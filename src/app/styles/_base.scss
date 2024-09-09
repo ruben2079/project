@@ -1,0 +1,88 @@
+@use "./variables" as var;
+@use "./breakpoints" as break;
+@use "./mixins" as break;
+
+// BASE STYLES (for common components)
+// Only include if the component and class will be used more than once
+
+a {
+  color: var.$cyan !important;
+  text-decoration: none !important;
+  cursor: pointer;
+}
+
+a:hover {
+  color: var.$cyan;
+  text-decoration: underline;
+}
+
+mat-card {
+  border-radius: var.$half-rounded-radius !important;
+  margin-bottom: 10px;
+  width: 65vw;
+  font-size: 10px;
+  @include mixins.mat-card-border;
+}
+
+.warning-icon {
+  font-size: 24px;
+  height: 24px;
+  width: 24px;
+  transform: scale(1.5);
+  position: relative;
+  left: 20px;
+  top: 7px;
+}
+
+.data-icon {
+  font-size: 24px;
+  height: 24px;
+  width: 24px;
+  transform: scale(1.25);
+  position: relative;
+  left: 20px;
+  top: 7px;
+}
+
+.currentScreenSize {
+  z-index: 100000;
+}
+
+.button {
+  // @include mixins.button;
+}
+
+.mat-dialog-header {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 10px 16px;
+  width: 100%;
+  background-color: var.$blue;
+  color: var.$white;
+  height: 64px;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+// ANGULAR MATERIAL OVERRIDES
+
+// .mat-card {
+//   border-radius: var.$half-rounded-radius !important;
+//   margin-bottom: 10px;
+//   width: 65vw;
+//   font-size: 10px;
+// }
+
+// .mat-card:not([class*="mat-elevation-z"]) {
+//   @include mixins.shadow;
+// }
+
+.mat-tab-body.mat-tab-body-active {
+  height: 100%;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-outline {
+  background-color: white;
+  border-radius: 5px;
+}

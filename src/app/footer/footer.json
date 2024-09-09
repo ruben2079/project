@@ -1,0 +1,252 @@
+[
+    [
+      {
+        "footerName": "FRM",
+        "footerLinkList": [
+          {
+            "name": "Overview",
+            "url": ""
+          },
+          {
+            "name": "Program and Exams",
+            "url": ""
+          },
+          {
+            "name": "Fees and Payments",
+            "url": ""
+          },
+          {
+            "name": "Exam Logistics",
+            "url": ""
+          },
+          {
+            "name": "Exam Policies",
+            "url": ""
+          },
+          {
+            "name": "Study Materials",
+            "url": ""
+          },
+          {
+            "name": "FAQs",
+            "url": ""
+          },
+          {
+            "name": "Continuing Professional Development (CPD)",
+            "url": ""
+          },
+          {
+            "name": "Financial Risk Insights",
+            "url": ""
+          },
+          {
+            "name": "Career Risk Insights",
+            "url": ""
+          }
+        ]
+      },
+      {
+        "footerName": "Membership",
+        "footerLinkList": [
+          {
+            "name": "Membership Overview",
+            "url": ""
+          },
+          {
+            "name": "How to Renew",
+            "url": ""
+          },
+          {
+            "name": "Chapters &amp; Meetings",
+            "url": ""
+          },
+          {
+            "name": "Volunteer Opportunities",
+            "url": ""
+          },
+          {
+            "name": "Directory",
+            "url": ""
+          },
+          {
+            "name": "Career Center",
+            "url": ""
+          }
+        ]
+      }
+    ],
+    [
+      {
+        "footerName": "SCR",
+        "footerLinkList": [
+          {
+            "name": "Overview",
+            "url": ""
+          },
+          {
+            "name": "Program and Exams",
+            "url": ""
+          },
+          {
+            "name": "Fees and Payments",
+            "url": ""
+          },
+          {
+            "name": "Exam Logistics",
+            "url": ""
+          },
+          {
+            "name": "Study Materials",
+            "url": ""
+          },
+          {
+            "name": "FAQs",
+            "url": ""
+          },
+          {
+            "name": "Continuing Professional Development (CPD)",
+            "url": ""
+          },
+          {
+            "name": "Climate Risk Insights",
+            "url": ""
+          }
+        ]
+      },
+      {
+        "footerName": "Insights & Events",
+        "footerLinkList": [
+          {
+            "name": "Financial Risk",
+            "url": ""
+          },
+          {
+            "name": "Climate Risk",
+            "url": ""
+          },
+          {
+            "name": "Career Risk",
+            "url": ""
+          },
+          {
+            "name": "Resources - All",
+            "url": ""
+          }
+        ]
+      }
+    ],
+    [
+      {
+        "footerName": "RIA",
+        "footerLinkList": [
+          {
+            "name": "Overview",
+            "url": ""
+          },
+
+          {
+            "name": "Program and Exams",
+            "url": ""
+          },
+          {
+            "name": "Fees and Payments",
+            "url": ""
+          },
+          {
+            "name": "Exam Logistics",
+            "url": ""
+          },
+          {
+            "name": "Study Materials",
+            "url": ""
+          },
+          {
+            "name": "FAQs",
+            "url": ""
+          },
+          {
+            "name": "Continuing Professional Development (CPD)",
+            "url": ""
+          }
+        ]
+      },
+      {
+        "footerName": "Events",
+        "footerLinkList": [
+          {
+            "name": "Webcasts",
+            "url": ""
+          },
+          {
+            "name": "Podcasts",
+            "url": ""
+          }
+        ]
+      }
+    ],
+    [
+      {
+        "footerName": "Additional Certificates/Programs",
+        "footerLinkList": [
+          {
+            "name": "Foundations Of Financial Risk (FFR)",
+            "url": ""
+          },
+          {
+            "name": "Financial Risk &amp; Regulation (FRR)",
+            "url": ""
+          },
+          {
+            "name": "Introduction to Financial Risk Management",
+            "url": ""
+          }
+        ]
+      },
+      {
+        "footerName": "About Us",
+        "footerLinkList": [
+          {
+            "name": "About GARP",
+            "url": ""
+          },
+          {
+            "name": "Board of Trustees",
+            "url": ""
+          },
+          {
+            "name": "Press Room",
+            "url": ""
+          },
+          {
+            "name": "Careers at GARP",
+            "url": ""
+          },
+          {
+            "name": "Contact Us",
+            "url": ""
+          }
+        ]
+      },
+      {
+        "footerName": "Industry Engagement",
+        "footerLinkList": [
+          {
+            "name": "University Outreach",
+            "url": ""
+          },
+          {
+            "name": "Corporate Outreach",
+            "url": ""
+          },
+          {
+            "name": "Global Risk Forum",
+            "url": ""
+          },
+          {
+            "name": "Buy Side Risk Managers Forum",
+            "url": ""
+          }
+        ]
+      }
+    ]
+  ]

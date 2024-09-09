@@ -1,0 +1,78 @@
+@use "../styles/_variables" as var;
+@use "../styles/_mixins" as mixins;
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+
+  .logo {
+    margin-right: 20px;
+  }
+
+  .button {
+    // @include mixins.button;
+    width: 100%;
+  }
+
+  .mat-card-footer.centered .footer-links {
+    display: flex;
+    justify-content: center;
+  }
+
+  .footer-links {
+    padding: 10px;
+    text-align: center;
+
+    a {
+      padding-right: 15px;
+    }
+  }
+
+  mat-form-field {
+    width: 100%;
+  }
+
+  .login-card {
+    max-width: 400px;
+    width: 100%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .forgot-password {
+    margin-top: 16px;
+    text-align: right;
+    width: 100%;
+  }
+
+  .create-account {
+    margin-top: 16px;
+    text-align: center;
+    width: 100%;
+  }
+
+  .or-divider {
+    margin-top: 16px;
+    text-align: center;
+    width: 100%;
+  }
+
+  .google-sign-in {
+    margin-top: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
+  .google-sign-in img {
+    margin-right: 8px;
+  }
+}

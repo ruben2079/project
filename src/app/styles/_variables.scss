@@ -1,0 +1,45 @@
+@use "./breakpoints" as break;
+@use "@angular/material" as mat;
+@use "./fonts" as fonts;
+
+$baby-blue: #019cd4;
+$blue: #005575;
+$cyan: #00a2dd;
+
+$gray-light: rgba(0, 0, 0, 0.12);
+$gray-disable: #0000001f;
+$green: #70d25f;
+$light-blue: #d9f5ff;
+$gray-medium: #959ea2;
+$pink: #f7dddd;
+$red: #e02020;
+$isabelline: #ebf6f6;
+
+// New Design System Colors (comments added temporarily)
+$gray: #ccd6d6;
+$off-white: #f1efff; // dashboard gradient start
+$dark-blue-gray: #415061;
+$light-lilac: #dfd9fe;
+$bright-purple: #7358ff;
+$deep-purple: #7257ff;
+$white: #ffffff;
+$light-cyan:#f6fafb;
+$light-cyan-gray: #EBEDEF;
+$light-gray: #DFEAEA;
+$accent-vermillions: #F05225;
+$accent-vermillions-shadow: #a13535fe;
+$pale-cyan: #e0eaeb;
+$slate-gray: #666b6b;
+$garp-cyan: #00a2dd;
+$garp-saffrons: #fbb515;
+$corporate-black: #000000;
+$corporate-navys: #081A31;
+$periwinkle-dust: #F1EEFF;
+
+$full-rounded-radius: 25px;
+$half-rounded-radius: 7.5px;
+$card-width: 100%;
+$tablet-card-width: 87%;
+$program-grid-margin-left: 50px;
+$program-card-width: 550px;
+$program-side-card-width: 400px;

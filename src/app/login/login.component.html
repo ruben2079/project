@@ -1,0 +1,88 @@
+<div class="login-container">
+  <img class="logo" src="https://www.garp.org/hubfs/Website/Logos/GARP%20Corporate%20Logo%20-%20Full.png" />
+  <mat-card class="login-card">
+    <mat-tab-group #tabGroup dynamicHeight>
+      <mat-tab label="Login">
+        <mat-card-header>
+          <!-- <mat-card-title>Login</mat-card-title> -->
+        </mat-card-header>
+
+        <mat-card-content>
+          <form>
+            <mat-form-field appearance="outline">
+              <mat-label>Email Address</mat-label>
+              <input matInput type="email" placeholder="Enter your email">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Password</mat-label>
+              <input matInput type="password" placeholder="Enter your password">
+            </mat-form-field>
+            <button mat-raised-button class="button">Login</button>
+            <div class="forgot-password">
+              <a href="#">Forgot password?</a>
+            </div>
+
+          </form>
+        </mat-card-content>
+
+        <mat-card-actions>
+          <div class="create-account">
+            <span>Don't have an account? </span>
+            <a (click)="tabGroup.selectedIndex = 1">Create now</a>
+          </div>
+        </mat-card-actions>
+
+        <mat-card-footer class="centered">
+          <div class="footer-links">
+            <a target="_blank"
+              href="https://www.garp.org/about?_gl=1*1j4ad8h*_ga*MTU2ODU5NzU0MS4xNTc4NjkwMTQ2*_ga_Q7Z92ZWR81*MTcwMjU5MDI4MC41My4xLjE3MDI1OTA0MjUuNTkuMC4w">About
+              GARP</a>
+            <a target="_blank"
+              href="https://www.garp.org/code-of-conduct?_gl=1*wq7o83*_ga*MTU2ODU5NzU0MS4xNTc4NjkwMTQ2*_ga_Q7Z92ZWR81*MTcwMjU5MDI4MC41My4xLjE3MDI1OTA0NTQuMzAuMC4w">Code
+              of Conduct</a>
+            <a target="_blank"
+              href="https://www.garp.org/privacy-notice?_gl=1*wq7o83*_ga*MTU2ODU5NzU0MS4xNTc4NjkwMTQ2*_ga_Q7Z92ZWR81*MTcwMjU5MDI4MC41My4xLjE3MDI1OTA0NTQuMzAuMC4w">Privacy
+              Notice</a>
+          </div>
+        </mat-card-footer>
+      </mat-tab>
+      <mat-tab label="Sign Up">
+        <mat-card-header>
+          <!-- <mat-card-title>Sign Up</mat-card-title> -->
+        </mat-card-header>
+
+        <mat-card-content>
+          <form>
+            <mat-form-field appearance="outline">
+              <mat-label>Email Address</mat-label>
+              <input matInput type="email" placeholder="Enter your email">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Password</mat-label>
+              <input matInput type="password" placeholder="Enter your password">
+            </mat-form-field>
+            <button mat-raised-button class="button">Sign Up</button>
+
+          </form>
+        </mat-card-content>
+
+        <mat-card-footer class="centered">
+          <div class="footer-links">
+            <a target="_blank"
+              href="https://www.garp.org/about?_gl=1*1j4ad8h*_ga*MTU2ODU5NzU0MS4xNTc4NjkwMTQ2*_ga_Q7Z92ZWR81*MTcwMjU5MDI4MC41My4xLjE3MDI1OTA0MjUuNTkuMC4w">About
+              GARP</a>
+            <a target="_blank"
+              href="https://www.garp.org/code-of-conduct?_gl=1*wq7o83*_ga*MTU2ODU5NzU0MS4xNTc4NjkwMTQ2*_ga_Q7Z92ZWR81*MTcwMjU5MDI4MC41My4xLjE3MDI1OTA0NTQuMzAuMC4w">Code
+              of Conduct</a>
+            <a target="_blank"
+              href="https://www.garp.org/privacy-notice?_gl=1*wq7o83*_ga*MTU2ODU5NzU0MS4xNTc4NjkwMTQ2*_ga_Q7Z92ZWR81*MTcwMjU5MDI4MC41My4xLjE3MDI1OTA0NTQuMzAuMC4w">Privacy
+              Notice</a>
+          </div>
+        </mat-card-footer>
+      </mat-tab>
+    </mat-tab-group>
+  </mat-card>
+
+</div>

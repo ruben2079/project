@@ -1,0 +1,43 @@
+
+$font-path-nunito: 'https://www.garp.org/hubfs/Website/GBI/GBI-Development/assets/fonts';
+
+$nunito-sans-semi-bold: ('font-family': 'Nunito Sans', 'src': url('#{$font-path-nunito}/NunitoSans-SemiBold.ttf') format('truetype'), 'font-weight': 600, 'font-style': normal);
+$nunito-sans-regular: ('font-family': 'Nunito Sans', 'src': url('#{$font-path-nunito}/NunitoSans-Regular.ttf') format('truetype'), 'font-weight': 400, 'font-style': normal);
+$nunito-sans-light: ('font-family': 'Nunito Sans', 'src': url('#{$font-path-nunito}/NunitoSans-Light.ttf') format('truetype'), 'font-weight': 300, 'font-style': normal);
+$nunito-sans-extra-bold: ('font-family': 'Nunito Sans', 'src': url('#{$font-path-nunito}/NunitoSans-ExtraBold.ttf') format('truetype'), 'font-weight': 800, 'font-style': normal);
+$nunito-sans-bold: ('font-family': 'Nunito Sans', 'src': url('#{$font-path-nunito}/NunitoSans-Bold.ttf') format('truetype'), 'font-weight': 700, 'font-style': normal);
+
+$font-path-klinic: 'https://www.garp.org/hubfs/Website/GARP%20Member%20Portal%202.0/assets/fonts/Klinic-Slab';
+
+$klinic-slab-book-it: ('font-family': 'Klinic Slab', 'src': url('#{$font-path-klinic}/KlinicSlabBookIt.woff') format('woff'), 'font-weight': 700, 'font-style': italic);
+$klinic-slab-bold: ('font-family': 'Klinic Slab', 'src': url('#{$font-path-klinic}/KlinicSlabBold.woff') format('woff'), 'font-weight': 700, 'font-style': normal);
+$klinic-slab-medium: ('font-family': 'Klinic Slab', 'src': url('#{$font-path-klinic}/KlinicSlabMedium.woff') format('woff'), 'font-weight': 500, 'font-style': normal);
+$klinic-slab-bold-it: ('font-family': 'Klinic Slab', 'src': url('#{$font-path-klinic}/KlinicSlabBoldIt.woff') format('woff'), 'font-weight': 700, 'font-style': italic);
+$klinic-slab-light-it: ('font-family': 'Klinic Slab', 'src': url('#{$font-path-klinic}/KlinicSlabLightIt.woff') format('woff'), 'font-weight': 300, 'font-style': italic);
+
+$klinic-slab-medium-it: ('font-family': 'Klinic Slab', 'src': url('#{$font-path-klinic}/KlinicSlabMediumIt.woff') format('woff'), 'font-weight': 500, 'font-style': italic);
+$klinic-slab-book: ('font-family': 'Klinic Slab', 'src': url('#{$font-path-klinic}/KlinicSlabBook.woff') format('woff'), 'font-weight': 400, 'font-style': normal);
+$klinic-slab-light: ('font-family': 'Klinic Slab', 'src': url('#{$font-path-klinic}/KlinicSlabLight.woff') format('woff'), 'font-weight': 300, 'font-style': normal);
+
+@mixin font-face($font-map) {
+  @font-face {
+    font-family: map-get($font-map, 'font-family');
+    src: map-get($font-map, 'src');
+    font-weight: map-get($font-map, 'font-weight');
+    font-style: map-get($font-map, 'font-style');
+  }
+}
+@include font-face($nunito-sans-semi-bold);
+@include font-face($nunito-sans-regular);
+@include font-face($nunito-sans-light);
+@include font-face($nunito-sans-extra-bold);
+@include font-face($nunito-sans-bold);
+
+@include font-face($klinic-slab-medium-it);
+@include font-face($klinic-slab-book);
+@include font-face($klinic-slab-light);
+@include font-face($klinic-slab-book-it);
+@include font-face($klinic-slab-bold);
+@include font-face($klinic-slab-medium);
+@include font-face($klinic-slab-bold-it);
+@include font-face($klinic-slab-light-it);

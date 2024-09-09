@@ -1,0 +1,74 @@
+@use "./breakpoints" as bp;
+@use "@angular/material" as mat;
+@use "./fonts" as fonts;
+@use "./variables" as var;
+
+@mixin primary-btn {
+  border-radius: 50px;
+  padding: 10px 20px;
+  background-color: var.$deep-purple;
+  color: white !important;
+  font-weight: 800;
+  margin-top: 0;
+  margin-bottom: 0;
+
+  span {
+    top: 1px;
+  }
+}
+
+@mixin secondary-btn {
+}
+
+@mixin mat-divider-nav {
+  width: 96%;
+  margin: auto;
+  border-color: rgba(10, 10, 10, 0.12);
+  border-top-width: 2px; // adjust this value to make the divider thicker or thinner
+}
+
+@mixin borderRadius($borderWidth, $borderStyle, $borderColor, $radiusSize) {
+  border-radius: $radiusSize;
+  border: $borderWidth $borderStyle $borderColor;
+}
+
+@mixin program-grid {
+  display: grid;
+  grid-template-areas: "column1 column2";
+  grid-template-columns: 1fr auto;
+  grid-gap: 100px;
+  margin-left: var.$program-grid-margin-left;
+
+  @include bp.mobile {
+    grid-template-columns: 1fr;
+  }
+}
+
+@mixin dashcard-header {
+  font-family: map-get(fonts.$klinic-slab-bold, "font-family");
+  font-weight: 700;
+}
+
+@mixin dashcard-font {
+  font-size: 0.9rem;
+}
+@mixin mat-card-border {
+  background-color: var.$light-cyan-gray;
+  border-radius: 10px;
+  border: 1px solid var.$pale-cyan;
+  box-shadow: 1px 4px 1px var.$pale-cyan !important;
+}
+
+@mixin standard-modal {
+  min-width: var.$program-card-width;
+  min-height: 200px;
+}
+
+@mixin aligned-button {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  margin: 0 10px;
+  line-height: 1.5;
+  margin-left: -18px;
+}

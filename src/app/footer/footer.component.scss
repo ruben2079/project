@@ -1,0 +1,134 @@
+@use "../../app/styles/_variables" as var;
+@use "../../app/styles/_fonts" as fonts;
+@use "../../app/styles/_breakpoints" as bp;
+
+.footer-container {
+  padding: 100px 100px;
+  background: var.$light-blue;
+  background: linear-gradient(
+    180deg,
+    var.$periwinkle-dust 0%,
+    var.$off-white 100%
+  );
+  background: -ms-linear-gradient(
+    180deg,
+    var.$periwinkle-dust 0%,
+    var.$off-white 100%
+  );
+  background: -moz-linear-gradient(
+    180deg,
+    var.$periwinkle-dust 0%,
+    var.$off-white 100%
+  );
+  display: flex;
+  font-family: map-get(fonts.$nunito-sans-regular, "font-family");
+  font-size: 12px;
+  
+  @include bp.mobile {
+    flex-direction: column;
+    padding: 0 50px;
+  }
+  P {
+    strong {
+      font-size: medium;
+    }
+  }
+  .footer-list-container {
+    width: 20%;
+    @include bp.mobile {
+      width: auto;
+    }
+    ul {
+      padding: 0;
+      li {
+        list-style-type: none;
+        margin-bottom: 10px;
+
+        div.social-media-container {
+          text-align: center;
+          width: 200px;
+          p {
+            text-align: left;
+            line-height: 25px;
+            margin-left: 7px;
+            margin-top: 20px;
+          }
+        }
+        div.social-icons {
+          text-align: center;
+          margin-top: 10px;
+          padding: 25px 0;
+          border-top: 1px solid var.$gray-medium;
+          border-bottom: 1px solid var.$gray-medium;
+          a {
+            svg {
+              display: inline-block;
+              margin: 0 5px;
+              width: 18px;
+              height: auto;
+            }
+          }
+        }
+        a {
+          color: var.$corporate-navys;
+          text-decoration: none;
+
+          &:hover {
+            text-decoration: underline;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+}
+
+.footer-bottom-container {
+  color: var.$corporate-navys;
+
+  ul {
+    display: flex;
+    padding: 0;
+    font-family: map-get(fonts.$nunito-sans-regular, "font-family");
+    font-size: 12px;
+    margin-left: 90px;
+    @include bp.mobile {
+      margin-left: 0;
+      justify-content: flex-end;
+    }
+    
+    li {
+      list-style-type: none;
+      margin-right: 20px;
+
+      a {
+        text-decoration: none;
+        color: var.$corporate-navys;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
+
+:host mat-card-actions {
+  padding: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: 12px;
+
+  mat-icon {
+    color: var.$deep-purple;
+    text-align: center;
+    position: relative;
+    top: -6px;
+    margin-left: 5px;
+  }
+  .see-all {
+    position: relative;
+    vertical-align: top;
+    font-weight: bold;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+  }
+}

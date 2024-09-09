@@ -1,0 +1,153 @@
+@use "styles/variables" as var;
+@use "styles/_breakpoints" as bp;
+
+// .wrapper {
+//   display: flex;
+//   flex-direction: column;
+
+//   // @include bp.mobile {
+//   //   grid-template-columns: 1fr;
+//   //   grid-template-areas:
+//   //     "header "
+//   //     "nav"
+//   //     "content";
+//   //   nav ul {
+//   //     flex-direction: column;
+//   //   }
+//   // }
+// }
+
+// .main-head {
+//   grid-area: header;
+// }
+
+// .content-area {
+//   // display: grid;
+//   // grid-template-columns: 1fr 4fr;
+//   // grid-template-areas: "nav content";
+//   display: flex;
+//   flex-direction: column;
+// }
+
+// article.content {
+//   grid-area: content;
+
+//   @include bp.desktop {
+//     grid-area: content;
+//     height: 100%;
+//     max-width: 100%;
+//     display: grid;
+//     justify-content: center;
+//     position: absolute;
+//     top: 100px;
+//     left: 100px;
+//     margin-top: 100px;
+//     // padding-left: 20px;
+//     margin-left: 10%;
+//   }
+
+//   @include bp.tablet-portrait {
+//     position: absolute;
+//     top: 60%;
+//     left: 50%;
+//     transform: translate(-50%, -50%);
+//     height: 100vh;
+//   }
+
+//   @include bp.mobile {
+//     position: absolute;
+//     top: 50%;
+//     left: 50%;
+//     transform: translate(-50%, -50%);
+//     height: 100vh;
+//   }
+// }
+
+// nav {
+//   grid-area: nav;
+// }
+
+// .wrapper nav.main-nav {
+//   grid-area: nav;
+// }
+
+// .footer {
+//   grid-area: footer;
+// }
+
+// @media (min-width: 500px) {
+//   .wrapper {
+//     grid-template-columns: 1fr 3fr;
+//     grid-template-areas:
+//       "header header header"
+//       "nav     content content"
+//       "footer footer footer";
+//   }
+//   nav ul {
+//     display: flex;
+//     justify-content: space-between;
+//   }
+// }
+
+// router-outlet {
+//   max-width: 100vw;
+//   overflow-x: hidden;
+// }
+
+// app-footer.footer {
+//   grid-area: footer;
+// }
+
+.alert {
+  position: sticky;
+  top: 60px;
+  width: auto;
+  z-index: 500;
+  margin: 0px 25px;
+}
+
+.alert-mobile {
+  position: sticky;
+  top: 88px;
+  width: auto;
+  z-index: 500;
+}
+
+app-top-nav-bar {
+  width: 100%;
+  z-index: 1000;
+  position: fixed;
+  top: 0px;
+  max-height: 100vh;
+  overflow: auto;
+}
+
+app-side-nav-bar {
+  min-width: 23%;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  position: relative;
+  top: 80px;
+
+  .content-area {
+    display: flex;
+    min-height: 100vh;
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      min-width: 77%;
+      @include bp.mobile {
+        min-width: 100%;
+      }
+    }
+  }
+
+  router-outlet {
+    width: 100%;
+  }
+}

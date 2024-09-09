@@ -1,0 +1,62 @@
+// Theese breakponts will be our standard and should not be changed for specific components unless discussed.
+
+$min-width: (
+  "mobile": 0,
+  "tablet-portrait": 600px,
+  "tablet-landscape": 960px,
+  "desktop": 1280px,
+  "large-desktop": 1920px,
+);
+
+$max-width: (
+  "mobile": 599.98px,
+  "tablet-portrait": 959.98px,
+  "tablet-landscape": 1279.98px,
+  "desktop": 1919.98px,
+);
+
+@mixin mobile {
+  @media (min-width: map-get($min-width, "mobile")) and (max-width: map-get($max-width, "tablet-portrait")) {
+    @content;
+  }
+}
+
+// tablet-portrait: Not necessary to use; Only for uncommon cases where separate design is better for this device width - Use mixin mobile when possible
+@mixin tablet-portrait {
+  @media (min-width: map-get($min-width, "tablet-portrait")) and (max-width: map-get($max-width, "tablet-portrait")) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: map-get($min-width, "tablet-portrait")) {
+    @content;
+  }
+}
+
+@mixin breakpoint($bp: 0) {
+  @media (min-width: $bp) {
+    @content;
+  }
+}
+
+@mixin responsive-test {
+  @include mobile {
+    color: red;
+  }
+  @include tablet {
+    color: blue;
+  }
+  @include tablet-landscape {
+    color: green;
+  }
+  @include desktop {
+    color: purple;
+  }
+  @include large-desktop {
+    color: orange;
+  }
+  @include breakpoint(1400px) {
+    color: pink;
+  }
+}

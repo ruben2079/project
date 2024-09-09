@@ -1,0 +1,18 @@
+<div class="wrapper">
+  <!-- Top Nav -->
+  <app-top-nav-bar></app-top-nav-bar>
+
+  <!-- Content -->
+  <div class="content-area">
+    <app-side-nav-bar *deviceType="'desktop'"></app-side-nav-bar>
+    <article class="content">
+      <app-exam-alert-bar *deviceType="'desktop'" class="alert"></app-exam-alert-bar>
+      <app-exam-alert-bar *deviceType="'mobile'" class="alert-mobile"></app-exam-alert-bar>
+      <router-outlet></router-outlet>
+    </article>
+  </div>
+
+  <!-- Footer -->
+  <app-footer class="footer"></app-footer>
+</div>
+<app-update-profile-form></app-update-profile-form>
