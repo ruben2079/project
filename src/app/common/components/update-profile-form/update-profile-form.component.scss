@@ -1,0 +1,203 @@
+@use "../../../styles/_variables" as var;
+@use "../../../styles/_breakpoints" as bp;
+@use "../../../styles/_mixins" as mixins;
+
+.overlay {
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color:rgba(0,0,0,0.5);
+    vertical-align: middle;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    animation-duration: 0.2s;
+    animation-name: fadeIn;
+    animation-iteration-count: 1;
+    .form {
+        max-width: 800px;
+        height: 91%;
+        position: relative;
+        background-color: var.$white;
+        margin: 30px auto;
+        padding: 20px;
+        @include mixins.borderRadius(1px, solid , var.$white , 20px);
+        div {
+            &.close-button-wrapper {
+                text-align: right;
+                span {
+                    &.close-button {
+                        padding: 5px;
+                        display: inline-block;
+                        width: 20px;
+                        text-align: center;
+                        font-weight: bold;
+                        color: var.$bright-purple;
+                        @include mixins.borderRadius(3px, solid , var.$bright-purple , 100%);
+                        &:hover {
+                            cursor: pointer;
+                        }
+                    }
+                }
+            }
+        }
+        .mat-card-content {
+            background-color: var.$white;
+            overflow-y: scroll;
+            display: block;
+            &::-webkit-scrollbar {
+                height: 10px;
+                width: 10px;
+            }
+            &::-webkit-scrollbar-track {
+                border-radius: 5px;
+                background-color: var.$gray !important;
+                border: 4px solid var.$white !important;
+            }
+
+            &::-webkit-scrollbar-track:hover {
+                background-color: var.$gray !important;
+            }
+
+            &::-webkit-scrollbar-track:active {
+                background-color: var.$gray !important;
+            }
+
+            &::-webkit-scrollbar-thumb {
+                border-radius: 20px;
+                background-color: var.$deep-purple !important;
+            }
+
+            &::-webkit-scrollbar-thumb:hover {
+                background-color: var.$deep-purple !important;
+            }
+
+            &::-webkit-scrollbar-thumb:active {
+                background-color: var.$deep-purple !important;
+            }
+            form {
+                width: 100%;
+                max-height: calc(100vh - 250px);
+                .container {
+                    border: 0;
+                    width: 100%;
+                    display: flex;
+                    flex-direction: row;
+                    @include bp.mobile {
+                        flex-direction: column;
+                    }
+                    &.full-width {
+                        flex-direction: column;
+                    }
+                    .form-field {
+                        flex-grow: 1;
+                        width: 100%;
+                        &.right-text-align {
+                            text-align: right;
+                        }
+                        mat-form-field {
+                            width: 100%;
+                            mat-icon {
+                                &.cancel-icon {
+                                    cursor: pointer;
+                                }
+                            }
+                        }
+                        .add-new-institution {
+                            cursor: pointer;
+                            display: inline-block;
+                            color: var.$bright-purple;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    a {
+        color: var.$deep-purple;
+        &:hover, &:active {
+            color: var.$deep-purple;
+        }
+
+    }
+}
+:host {
+    ::ng-deep {
+        .mdc-text-field--filled {
+            --mdc-filled-text-field-active-indicator-height: 0px;
+            --mdc-filled-text-field-focus-active-indicator-height: 2px;
+            --mdc-filled-text-field-container-shape: 4px;
+            border-top-left-radius: var(--mdc-filled-text-field-container-shape);
+            border-top-right-radius: var(--mdc-filled-text-field-container-shape);
+            border-bottom-right-radius: 0;
+            border-bottom-left-radius: 0;
+            border-radius: 10px;
+            border: 1px solid var.$gray;
+            width: 99.2%;
+            @include bp.mobile {
+                width: 98.2%;
+            }
+        }
+        .mdc-text-field--outlined {
+            border-radius: 10px;
+            border: 1px solid var.$white;
+            width: 99%;
+        }
+        .mat-mdc-card-content {
+            padding: 0;
+        }
+        .mat-mdc-button.mat-unthemed {
+            color: var.$white;
+        }
+        .mat-mdc-button .mat-mdc-button-touch-target, .mat-mdc-unelevated-button .mat-mdc-button-touch-target, .mat-mdc-raised-button .mat-mdc-button-touch-target, .mat-mdc-outlined-button .mat-mdc-button-touch-target {
+            position: absolute;
+            top: 50%;
+            height: 48px;
+            left: 0;
+            right: 0;
+            background-color: var.$bright-purple;
+            text-align: center;
+            transform: translateY(-50%);
+            border-radius: 60px;
+            margin: 0 5px;
+        }
+
+        .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+            background-color: var.$white;
+        }
+
+        .mdc-button .mdc-button__label {
+            position: relative;
+            left: -10px;
+        }
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 0.5
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5
+    }
+
+    to {
+        opacity: 0;
+    }
+}

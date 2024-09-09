@@ -1,0 +1,8 @@
+@use "../../../../styles/_variables" as var;
+@use "../../../../styles/_fonts" as fonts;
+@use "../../../../styles/_mixins" as mixins;
+
+.primary-button {
+  @include mixins.primary-btn;
+  font-family: map-get(fonts.$nunito-sans-regular, 'font-family');
+}

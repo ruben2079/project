@@ -1,0 +1,74 @@
+<div class="mobile-nav-bar">
+  <!-- Closed Toolbar -->
+  <mat-toolbar [ngClass]="{'closed-toolbar': !isAnyDropdownOpen, 'opened-toolbar': isAnyDropdownOpen}">
+    <div *ngIf="!isAnyDropdownOpen" class="toolbar-content">
+      <img class="logo" alt="GARP logo"
+        src="https://www.garp.org/hubfs/Website/Logos/GARP%20Corporate%20Logo%20-%20Short%20Knockout.png" />
+      <mat-icon class="open-icon" (click)="toggleContainerDropdown()">menu</mat-icon>
+    </div>
+
+    <!-- Opened Toolbar -->
+    <div *ngIf="isAnyDropdownOpen" class="toolbar-content">
+      <img class="logo" alt="GARP logo"
+        src="https://www.garp.org/hubfs/Website/Logos/GARP%20Corporate%20Logo%20-%20Short.png" />
+      <mat-icon class="close-icon" (click)="toggleContainerDropdown()">close</mat-icon>
+    </div>
+  </mat-toolbar>
+
+  <div *ngIf="isAnyDropdownOpen">
+    <!-- Main Dropdown-->
+    <mat-card *ngIf="isMainOpen" class="dropdown">
+      <mat-card-content>
+        <p class="header">Account</p>
+        <mat-divider></mat-divider>
+        <app-side-nav-bar (navItemClicked)="toggleContainerDropdown()"></app-side-nav-bar>
+        <app-logout class="logout-btn"></app-logout>
+        <p class="header">Browse & Explore</p>
+        <app-browse-explore (navItemClicked)="toggleSecondaryDropdown($event)"></app-browse-explore>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Secondary Dropdown -->
+    <div *ngFor="let navItem of navItemsList">
+      <!-- DETAILS -->
+      <mat-card *ngIf="isSecondaryOpen && (selectedNavItem === navItem.title)" class="dropdown extended">
+        <mat-card-content>
+          <!-- COLUMN 1 -->
+          <p class="header">{{ navItem?.column1?.header }}
+            <span *ngIf="navItem?.column1?.headerURL">
+              <br />
+              (<a id="trademark" [href]="navItem?.column1?.headerURL" [innerHTML]="navItem?.column1?.trademark"></a>)
+              {{ navItem.column1.headerExtended }}
+            </span>
+          </p>
+          <mat-nav-list class="container-mobile">
+            <ul>
+              <li *ngFor="let link of navItem.column1.links">
+                <div (click)="$event.stopPropagation(); toggleContainerDropdown()">
+                <a mat-list-item routerLinkActive="active-link">
+                  <div class="flex-container">
+                    <span>{{ link.title }}</span>
+                  </div>
+                </a>
+              </div>
+              </li>
+            </ul>
+          </mat-nav-list>
+          <!-- COLUMN 2 -->
+          <p class="header">{{ navItem.column2?.header }}</p>
+          <mat-nav-list class="container-mobile">
+            <ul>
+              <li *ngFor="let link of navItem?.column2?.links">
+                <a mat-list-item routerLinkActive="active-link" (click)="toggleContainerDropdown()">
+                  <div class="flex-container">
+                    <span>{{ link.title }}</span>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </mat-nav-list>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

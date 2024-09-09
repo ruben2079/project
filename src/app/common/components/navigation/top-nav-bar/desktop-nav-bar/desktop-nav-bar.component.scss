@@ -1,0 +1,42 @@
+@use "../../../../../styles/_variables" as var;
+
+.desktop-nav-bar {
+  background-color: black;
+  display: flex;
+  flex-wrap: wrap;
+  height: 80px;
+  color: white;
+  font-size: 2 rem;
+  justify-content: flex-end;
+  width: 100%;
+  position: fixed;
+
+  &__dropdown {
+    cursor: pointer;
+  }
+
+  button {
+    padding: 0 10px;
+  }
+
+  .logo {
+    width: 125px;
+    margin-right: 25px;
+    margin-left: 38px;
+  }
+
+  .icon-left {
+    top: 10px;
+    position: relative;
+    right: 5px;
+  }
+
+  .nav-items-end {
+    margin-left: auto;
+  }
+
+  .notification-icon {
+    margin-right: 20px;
+    top: 10px;
+  }
+}

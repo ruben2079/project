@@ -1,0 +1,159 @@
+@use "../../../../../styles/_variables" as var;
+@use "../../../../../styles/_mixins" as mixins;
+
+.mobile-nav-bar {
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  overflow-y: scroll;
+  -ms-overflow-style: none; /* Internet Explorer and Edge */
+  scrollbar-width: none;
+
+  mat-divider {
+    @include mixins.mat-divider-nav;
+  }
+
+  mat-toolbar {
+    max-width: 100%;
+    margin-top: 0;
+
+    .mat-list-item:focus {
+      background-color: transparent !important;
+    }
+
+    &.closed-toolbar, .opened-toolbar {
+      height: 100%;
+    }
+
+    &.mat-toolbar-single-row.closed-toolbar {
+      width: 100%;
+    }
+
+    &.closed-toolbar {
+      background-color: black;
+    }
+
+    &.opened-toolbar {
+      background-color: white;
+    }
+
+    .toolbar-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 100%;
+      overflow: auto;
+
+      .open-icon,
+      .close-icon {
+        justify-self: end;
+        margin-left: auto;
+        margin-right: 35px;
+        transform: scale(2);
+      }
+
+      .open-icon {
+        color: white;
+      }
+
+      .close-icon {
+        color: black;
+      }
+
+      img.logo {
+        width: 200px;
+        padding: 20px;
+        display: inline-block;
+      }
+    }
+
+    // .open-icon {
+    // display: inline-block;
+    // color: white;
+    // margin-left: auto;
+    // font-size: 30px;
+    // position: relative;
+    // top: -3px;
+    // padding-right: 10px;
+    // }
+
+    // .close-icon {
+    //   color: black;
+    //   margin-left: auto;
+    //   font-size: 30px;
+    //   position: relative;
+    //   top: -3px;
+    //   padding-right: 10px;
+    // }
+  }
+
+  .column1 {
+    margin-right: 75px;
+    padding-left: 20px;
+  }
+
+  .column2 {
+    padding-right: 20px;
+  }
+
+  .mat-mdc-card.mdc-card.dropdown {
+    max-width: 100vw;
+    display: flex;
+    flex-direction: column;
+
+    &.extended {
+      height: 100vh;
+    }
+
+    .extended {
+      height: 100vh;
+    }
+
+    img {
+      max-width: 100vw;
+      height: auto;
+    }
+
+    p.header {
+      font-weight: 800;
+      font-size: 20px;
+      padding: 0 30px;
+      height: 15px;
+
+      #trademark {
+        color: var.$cyan;
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+
+    .mat-mdc-card-content {
+      padding: 0;
+
+      .logout-btn {
+        padding: 18px;
+      }
+    }
+
+    app-side-nav-bar {
+      flex: none; // This prevents the side nav bar from taking up all the space
+    }
+
+    app-logout {
+      flex: none; // This also prevents the logout button from taking up all the space
+    }
+  }
+
+  ul {
+    list-style-type: none;
+  }
+}
+
+.mobile-nav-bar::-webkit-scrollbar {
+  /* Chrome, Safari and Opera */
+  display: none;
+}

@@ -1,0 +1,9 @@
+@use "../../../../styles/_variables" as var;
+
+span#debugMode{
+  background-color: white;
+  color: red;
+  margin: auto;
+  display: block;
+  text-align: center;
+}

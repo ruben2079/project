@@ -1,0 +1,16 @@
+@use "../../../../styles/_variables" as var;
+
+mat-icon {
+  color: var.$deep-purple;
+}
+
+.secondary-button {
+  font-weight: 800;
+  color: var.$dark-blue-gray;
+
+  #icon {
+    top: 6px;
+    position: relative;
+    left: 2px;
+  }
+}

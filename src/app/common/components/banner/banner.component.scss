@@ -1,0 +1,55 @@
+@use "../../../styles/_variables" as var;
+
+$banner-height: 120px;
+
+.banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var.$white;
+  background: var.$blue;
+  border-radius: 0%;
+  height: $banner-height;
+  font-weight: 700;
+  top: 0;
+  z-index: 3;
+  width: 100%;
+
+  .text-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .header {
+    margin-left: 25px;
+    font-size: 32px;
+  }
+
+  .subtitle {
+    margin-left: 25px;
+    font-size: 25px;
+    padding-top: 10px;
+  }
+
+  .notification-icon {
+    padding: 0 21px;
+    margin-right: 58px;
+    transform: scale(1.75);
+  }
+
+  .spacer {
+    flex: 1 1 auto;
+  }
+
+  h3 {
+    padding: 0 25px;
+  }
+}
+
+:host
+  ::ng-deep
+  .mat-badge-small.mat-badge-overlap.mat-badge-after
+  .mat-badge-content {
+  top: 0px;
+}

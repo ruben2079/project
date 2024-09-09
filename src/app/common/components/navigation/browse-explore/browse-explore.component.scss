@@ -1,0 +1,66 @@
+@use "../../../../styles/_variables" as var;
+@use "../../../../styles/breakpoints" as bp;
+@use "../../../../styles/_mixins" as mixins;
+
+mat-nav-list.container-mobile {
+  height: 100%;
+  background: white;
+  max-width: 100vw;
+  font-size: 16px;
+  max-width: 100vw;
+  padding-bottom: 100vh;
+
+  & a {
+    padding: 0 30px;
+  }
+
+  .profile-container img {
+    border-radius: 50%;
+    box-sizing: border-box;
+    width: 24px;
+    height: 24px;
+  }
+
+  .profile {
+    position: relative;
+    top: -6px;
+  }
+
+  .profile-container mat-icon {
+    width: 24px;
+    height: 24px;
+    margin: 0;
+    padding: 0;
+    position: relative;
+  }
+
+  .notification-dot {
+    height: 8px;
+    width: 8px;
+    background-color: #f00;
+    border-radius: 50%;
+    display: inline-block;
+    margin-left: 12px;
+    top: 10px;
+  }
+
+  .single-line-shimmer {
+    position: relative;
+    left: 10px;
+    bottom: 8px;
+  }
+
+  a mat-icon {
+      color: var.$deep-purple;
+  }
+
+  mat-divider {
+    @include mixins.mat-divider-nav;
+  }
+
+  .flex-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+}

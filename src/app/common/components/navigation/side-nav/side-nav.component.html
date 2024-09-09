@@ -1,0 +1,66 @@
+<mat-nav-list [@fadeIn]
+  [ngClass]="{'container': (deviceType$ | async) !== 'mobile', 'container-mobile': (deviceType$ | async) === 'mobile'}">
+  <!-- PROFILE DATA LOADING: SHIMMER -->
+  <div *ngIf="!isLoaded; else dataLoaded">
+    <a mat-list-item class="profile-container">
+      <mat-icon>
+        account_circle
+      </mat-icon>
+      <span class="profile">
+        <span>
+          <app-single-line-shimmer width="50%"></app-single-line-shimmer>
+        </span>
+      </span>
+    </a>
+  </div>
+  <!-- PROFILE DATA IS LOADED -->
+  <ng-template #dataLoaded>
+    <a mat-list-item class="profile-container" routerLink="/my-account">
+      <img *ngIf="avatarPhotoURL; else noAvatar" [src]="avatarPhotoURL" #dataLoaded>
+      <ng-template #noAvatar>
+        <mat-icon>
+          account_circle
+        </mat-icon>
+      </ng-template>
+      <span class="profile">
+        <span>
+          {{(firstName + ' ' + lastName) | truncate:15}}
+        </span>
+        <span>
+          (ID {{ garpId }})
+        </span>
+      </span>
+    </a>
+  </ng-template>
+  <mat-divider></mat-divider>
+  <a mat-list-item routerLink="/dashboard" routerLinkActive="active-link" (click)="toggleMobileDropdown()">
+    <mat-icon>home_outline</mat-icon>
+    <span>Dashboard</span>
+  </a>
+  <mat-divider></mat-divider>
+  <a mat-list-item routerLink="/study-materials" routerLinkActive="active-link" (click)="toggleMobileDropdown()">
+    <mat-icon>psychology_outline</mat-icon>
+    <span>Study Materials</span><span class="notification-dot"></span>
+  </a>
+  <mat-divider></mat-divider>
+  <a mat-list-item routerLink="/events" routerLinkActive="active-link" (click)="toggleMobileDropdown()">
+    <mat-icon>calendar_month_outline</mat-icon>
+    <span>Events</span>
+  </a>
+  <mat-divider></mat-divider>
+  <a mat-list-item routerLink="/programs" routerLinkActive="active-link" (click)="toggleMobileDropdown()">
+    <mat-icon>auto_stories_outline</mat-icon>
+    <span class="nav-item-name">Programs</span>
+  </a>
+  <mat-divider></mat-divider>
+  <a mat-list-item routerLink="/membership" routerLinkActive="active-link" (click)="toggleMobileDropdown()">
+    <mat-icon>calendar_month</mat-icon>
+    <span class="nav-item-name">Membership</span>
+  </a>
+  <mat-divider></mat-divider>
+  <a mat-list-item routerLink="/help-center" routerLinkActive="active-link" (click)="toggleMobileDropdown()">
+    <mat-icon>help_outline</mat-icon>
+    <span>Help Center</span>
+  </a>
+  <mat-divider *ngIf="(deviceType$ | async) === 'mobile'"></mat-divider>
+</mat-nav-list>

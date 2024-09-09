@@ -1,0 +1,205 @@
+<div class="overlay" *ngIf="isOpen">
+    <div class="form">
+        <div class="close-button-wrapper"><span class="close-button" (click)="closeModal()">x</span></div>
+        <h2>Is Your Profile Up to Date?</h2>
+        <p>Help us better recommend the learning, networking, and programming relevant to you and your career needs</p>
+        <hr />
+        <mat-card-content>
+            <div class="mat-card-content">
+            <form [formGroup]="mainForm">
+                <h3>Job Information</h3>
+                <div class="container full-width">
+                    <div class="form-field">
+                        <p><strong>What is your work status?</strong></p>
+                        <mat-form-field appearance="fill" [hideRequiredMarker]="">
+                            <mat-select formControlName="workStatus">
+                                <mat-option>-- None --</mat-option>
+                                <mat-option value="{{ workStatus | sanitizeHtml }}" *ngFor="let workStatus of workingStatus">{{ workStatus | sanitizeHtml }}</mat-option>
+                            </mat-select>
+                            <mat-label>Select</mat-label>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="form-field">
+                        <p><strong>What industry do/did you specialize in?</strong></p>
+                        <mat-form-field appearance="fill" [hideRequiredMarker]="">
+                            <mat-select formControlName="specializedIndustry">
+                                <mat-option>-- None --</mat-option>
+                                <mat-option value="{{ industry | sanitizeHtml }}" *ngFor="let industry of industriesList">{{ industry | sanitizeHtml }}</mat-option>
+                            </mat-select>
+                            <mat-label>Select</mat-label>
+                        </mat-form-field>
+                    </div>
+                    <div class="form-field">
+                        <p><strong>What year did you start working in the industry?</strong></p>
+                        <mat-form-field appearance="fill" [hideRequiredMarker]="">
+                            <mat-select formControlName="industryStartWorkingYear">
+                                <mat-option>-- None --</mat-option>
+                                <mat-option value="{{ workingYear }}" *ngFor="let workingYear of workingYears">{{ workingYear }}</mat-option>
+                            </mat-select>
+                            <mat-label>Select</mat-label>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="container full-width">
+                    <p><strong>What is your most recent company?</strong></p>
+                    <div class="form-field">
+                        <mat-form-field>
+                            <input (keyup)="onfieldChange(this.mainForm.get('company')?.value, 'company')" type="text" placeholder="Organization" matInput formControlName="company" [matAutocomplete]="auto">
+                            <mat-icon matSuffix class="search-icon" *ngIf="isOrganizationEditable">search</mat-icon>
+                            <mat-icon (click)="cancelIcon('company')" matSuffix class="cancel-icon" *ngIf="!isOrganizationEditable">cancel</mat-icon>
+                            <mat-autocomplete (optionSelected)="optionOrganizationSelected($event)" #auto="matAutocomplete">
+                                <mat-option *ngFor="let organization of filteredOrganizationOptions | async" value="{{ organization | sanitizeHtml }}">
+                                    {{ organization | sanitizeHtml }}
+                                </mat-option>
+                            </mat-autocomplete>
+                      </mat-form-field>
+                      <div *ngIf="!isOptionOrganizationSelected">No results found. <span class="add-new-institution"  (click)="addNewInstitution('company')"><strong>Add new organization</strong></span></div>
+                    </div>
+                </div>
+                <div class="container full-width">
+                    <div class="form-field">
+                        <p><strong>What is your professional level?</strong></p>
+                        <mat-form-field appearance="fill" [hideRequiredMarker]="">
+                            <mat-select formControlName="professionalLevel">
+                                <mat-option>-- None --</mat-option>
+                                <mat-option value="{{ professionalLevel | sanitizeHtml }}" *ngFor="let professionalLevel of professionalLevels">{{ professionalLevel | sanitizeHtml }}</mat-option>
+                            </mat-select>
+                            <mat-label>Select</mat-label>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="container full-width">
+                    <div class="form-field">
+                        <p><strong>What is your job function?</strong></p>
+                        <mat-form-field appearance="fill" [hideRequiredMarker]="">
+                            <mat-select formControlName="jobFunction"  (selectionChange)="riskSelected($event)">
+                                <mat-option>-- None --</mat-option>
+                                <mat-option value="{{ jobFunction | sanitizeHtml }}" *ngFor="let jobFunction of jobFunctions">{{ jobFunction | sanitizeHtml }}</mat-option>
+                            </mat-select>
+                            <mat-label>Select</mat-label>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="container full-width" *ngIf="isRiskSpecialtyOn">
+                    <div class="form-field">
+                        <p><strong>What is your risk specialty?</strong></p>
+                        <mat-form-field appearance="fill">
+                            <mat-select formControlName="riskSpecialty" matInput>
+                                <mat-option>-- Select Risk Specialty --</mat-option>
+                                <mat-option *ngFor="let specialty of riskSpecialtyList" value="{{ specialty | sanitizeHtml }}">{{ specialty | sanitizeHtml }}</mat-option>
+                            </mat-select>
+                            <mat-label>Select</mat-label>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="container full-width">
+                    <div class="form-field">
+                        <p><strong>What year did you start working in risk management?</strong></p>
+                        <mat-form-field appearance="fill" [hideRequiredMarker]="">
+                            <mat-select formControlName="riskManagementStartWorkingYear">
+                                <mat-option>-- None --</mat-option>
+                                <mat-option value="{{ year }}" *ngFor="let year of riskManagementYear">{{ year }}</mat-option>
+                            </mat-select>
+                            <mat-label>Select</mat-label>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="form-field">
+                        <p><strong>Do you currently hold any professional designations?</strong></p>
+                        <mat-checkbox formControlName="ACCA">ACCA</mat-checkbox>
+                        <mat-checkbox formControlName="CA">CA</mat-checkbox>
+                        <mat-checkbox formControlName="CAIA">CAIA</mat-checkbox>
+                        <mat-checkbox formControlName="CFA">CFA</mat-checkbox>
+                        <mat-checkbox formControlName="CFP">CFP</mat-checkbox>
+                        <mat-checkbox formControlName="CIA">CIA</mat-checkbox>
+                        <mat-checkbox formControlName="CMA">CMA</mat-checkbox>
+                        <mat-checkbox formControlName="CMT">CMT</mat-checkbox>
+                        <mat-checkbox formControlName="CPA">CPA</mat-checkbox>
+                        <mat-checkbox formControlName="CQF">CQF</mat-checkbox>
+                        <mat-checkbox formControlName="PMP">PMP</mat-checkbox>
+                        <mat-checkbox formControlName="Other" (change)="otherDesignations($event)">Other</mat-checkbox>
+                    </div>
+                </div>
+                <div class="container full-width" *ngIf="isOtherDesignationsOn">
+                    <div class="form-field">
+                        <p>Other Designations</p>
+                        <mat-form-field appearance="fill">
+                            <input matInput formControlName="OtherQualifications">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <h3>Academy Information</h3>
+                <div class="container full-width" *ngIf="institutions">
+                    <div class="form-field">
+                        <p><strong>Current or Most Recent School Attended</strong></p>
+                        <mat-form-field>
+                            <input (keyup)="onfieldChange(this.mainForm.get('school')?.value, 'school')" type="text" placeholder="School" matInput formControlName="school" [matAutocomplete]="auto">
+                            <mat-icon matSuffix class="search-icon" *ngIf="isSchoolEditable">search</mat-icon>
+                            <mat-icon (click)="cancelIcon('school')" matSuffix class="cancel-icon" *ngIf="!isSchoolEditable">cancel</mat-icon>
+                            <mat-autocomplete (optionSelected)="optionSchoolSelected($event)" #auto="matAutocomplete">
+                                <mat-option *ngFor="let school of filteredSchoolOptions | async" value="{{ school | sanitizeHtml }}">
+                                    {{ school | sanitizeHtml }}
+                                </mat-option>
+                            </mat-autocomplete>
+                        </mat-form-field>
+                      <div *ngIf="!isOptionSchoolSelected">No results found. <span class="add-new-institution"  (click)="addNewInstitution('school')"><strong>Add new school</strong></span></div>
+                    </div>
+                </div>
+                <div class="container full-width">
+                    <div class="form-field">
+                        <p><strong>Degree Program</strong></p>
+                        <mat-form-field appearance="fill" [hideRequiredMarker]="">
+                            <mat-select formControlName="highestDegree">
+                                <mat-option>-- None --</mat-option>
+                                <mat-option value="{{ degree | sanitizeHtml  }}" *ngFor="let degree of degreePrograms">{{ degree | sanitizeHtml }}</mat-option>
+                            </mat-select>
+                            <mat-label>Select</mat-label>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="form-field">
+                        <p><strong>Year Of Graduation</strong></p>
+                        <mat-form-field appearance="fill" [hideRequiredMarker]="">
+                            <mat-select formControlName="expectedGraduationYear">
+                                <mat-option>-- None --</mat-option>
+                                <mat-option *ngFor="let year of graduationYear" value="{{ year }}">{{ year }}</mat-option>
+                            </mat-select>
+                            <mat-label>Select</mat-label>
+                        </mat-form-field>
+                    </div>
+                    <div class="form-field">
+                        <p><strong>Month Of Graduation</strong></p>
+                        <mat-form-field appearance="fill" [hideRequiredMarker]="">
+                            <mat-select formControlName="expectedGraduationMonth">
+                                <mat-option>-- None --</mat-option>
+                                <mat-option *ngFor="let month of monthOfYear" value="{{ month }}">{{ month }}</mat-option>
+                            </mat-select>
+                            <mat-label>Select</mat-label>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="container right-text-align">
+                    <div class="form-field">
+                        <span>Don't to be asked again?</span>
+                        <p><a href="">Mute Profile Reminders For 1 Year</a></p>
+                    </div>
+                    <div class="form-field right-text-align">
+                        <button mat-button class="cancel-button" (click)="closeModal()">
+                            <mat-icon>account_circle_outline</mat-icon> 
+                            <span>Cancel</span>
+                        </button>
+                        <button mat-button class="logout-button" (click)="sendForm()">
+                            <mat-icon>account_circle_outline</mat-icon> 
+                            <span>Save Changes</span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+            </div>
+        </mat-card-content>
+    </div>
+</div>

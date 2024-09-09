@@ -1,0 +1,29 @@
+<div *ngIf="examAlertInfo?.statusCode !== 401 && !hideAlert">
+  <!-- Desktop View -->
+  <div *deviceType="'desktop'">
+    <mat-toolbar class="exam-alert" *ngIf="isLoaded;">
+      <mat-toolbar-row>
+        <span class="message">
+          <span [innerHTML]="message"></span>
+          <span class="call-to-action"> 
+            <span class="text">{{ cta }}</span> 
+            <span class="icon"><mat-icon>arrow_forward</mat-icon></span>
+          </span>
+        </span>
+        <div class="close-button-wrapper"><span class="close-button" (click)="close()">x</span></div>
+      </mat-toolbar-row>
+    </mat-toolbar>
+  </div>
+
+  <!-- Mobile View -->
+  <div *deviceType="'mobile'">
+    <mat-toolbar class="exam-alert-mobile" *ngIf="isLoaded;">
+      <mat-toolbar-row>
+        <span class="call-to-action"> 
+          <span class="text">{{ mobileCta }}</span> 
+        </span>
+        <div class="close-button-wrapper"><span class="close-button" (click)="close()">x</span></div>
+      </mat-toolbar-row>
+    </mat-toolbar>
+  </div>
+</div>

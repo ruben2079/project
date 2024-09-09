@@ -1,0 +1,19 @@
+<mat-toolbar-row class="banner">
+  <div class="text-container">
+    <div class="header">{{ title }}</div>
+    <span *ngIf="subtitle" class="subtitle">{{ subtitle }}</span>
+  </div>
+  <!-- SAVE: Notification Bell - Mat-Icon with custom bell -->
+  <!-- <mat-icon
+    class="notification-icon"
+    [matBadge]="notificationNumber"
+    matBadgeSize="small"
+    matBadgeColor="warn"
+    [matBadgeHidden]="hidden"
+    MatBadgePosition="before"
+    >notifications</mat-icon
+  > -->
+  <!-- <h3 *ngIf="!environment.production" style="color: red">
+    Device: {{ device }}
+  </h3> -->
+</mat-toolbar-row>

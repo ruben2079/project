@@ -1,0 +1,5 @@
+<!-- <ng-template [ngIf]="debugMode"><span id="debugMode">{{ deviceType$ | async }}</span></ng-template> -->
+<!-- DESKTOP -->
+<app-desktop-nav-bar @fadeIn *deviceType="'desktop'" [navItemsList]="navItemsList"></app-desktop-nav-bar>
+<!-- MOBILE/TABLET -->
+<app-mobile-nav-bar @fadeIn *deviceType="'mobile'" (logOut)="handleLogOut()"></app-mobile-nav-bar>

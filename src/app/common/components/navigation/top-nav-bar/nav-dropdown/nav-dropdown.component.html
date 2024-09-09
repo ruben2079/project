@@ -1,0 +1,29 @@
+  <div class="dropdown-container">
+    <div (mouseover)="toggleDropdown()">
+      <button>{{ navItem?.title }} <mat-icon class="icon" >expand_more</mat-icon></button>
+    </div>
+    <div class="dropdown" *ngIf="isDropdownVisible[navItemIndex]" (mouseleave)="hideDropdown()">
+      <div class="dropdown-content">
+        <div class="column1">
+          <h3 class="headerColumn1">
+            {{ navItem?.column1?.header }}
+            <br />
+            <div *ngIf="navItem?.column1?.headerURL">
+              (<a [href]="navItem?.column1?.headerURL" [innerHTML]="navItem?.column1?.trademark"></a>)
+              {{ navItem.column1.headerExtended }}
+            </div>
+          </h3>
+          <ul>
+            <li *ngFor="let link of navItem.column1.links">{{ link.title }}</li>
+          </ul>
+        </div>
+        <div class="column2" [ngStyle]="{'margin-top': navItem?.column1?.headerURL ? '1.68em' : '0'}">
+          <h3 class="headerColumn2">{{ navItem.column2?.header }}</h3>
+          <ul>
+            <li *ngFor="let link of navItem?.column2?.links">{{ link.title }}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="overlay" [ngClass]="{'open': isOverlayVisible}" (click)="hideDropdown()"></div>

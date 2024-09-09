@@ -1,0 +1,443 @@
+@use "../../../../styles/_variables" as var;
+@use "../../../../styles/breakpoints" as bp;
+@use "../../../../styles/_mixins" as mixins;
+
+mat-nav-list.container {
+  min-height: 100%;
+  background: linear-gradient(to bottom, var.$off-white, var.$isabelline);
+  font-size: 24px;
+  width: 100%;
+  text-transform: uppercase;
+
+  & a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 15px 30px 50px;
+  }
+
+  .profile-container img {
+    border-radius: 50%;
+    box-sizing: border-box;
+    margin-right: 10px;
+    width: 45px;
+    height: 45px;
+    font-size: 28px;
+  }
+
+  // .profile-container mat-icon {
+  //   width: 24px;
+  //   height: 24px;
+  //   margin: 0;
+  //   padding: 0;
+  //   position: relative;
+  // }
+
+  & a:first-child {
+    padding-top: 70px;
+  }
+
+  & a mat-icon {
+    border-radius: 50%;
+    background-color: #ccd6d6;
+    padding: 9px 9px;
+    box-sizing: border-box;
+    color: var.$dark-blue-gray;
+    margin-right: 10px;
+    width: 45px;
+    height: 45px;
+    font-size: 28px;
+  }
+
+  & a span {
+    position: relative;
+    top: -15px;
+    left: 10px;
+    color: var.$dark-blue-gray;
+    font-weight: 700;
+    font-size: 15px;
+
+    &.profile {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding-right: 15px;
+      padding-left: 42px;
+      top: -36px;
+
+      &span {
+        overflow-wrap: break-word;
+      }
+    }
+  }
+
+  & a:hover {
+    background-color: var.$light-lilac;
+    color: var.$bright-purple;
+    transition: all 0.35s ease-in-out;
+  }
+
+  & a:hover mat-icon {
+    color: white;
+    background-color: var.$deep-purple;
+    transition: all 0.3s ease-in-out;
+  }
+
+  & a:hover > span.nav-item-name {
+    color: var.$deep-purple;
+    transition: all 10s ease-in-out;
+  }
+
+  // Active Router Style
+  & a:hover,
+  & a.active-link {
+    background-color: var.$light-lilac;
+    color: var.$bright-purple;
+    transition: all 0.35s ease-in-out;
+  }
+
+  & a:hover mat-icon,
+  & a.active-link mat-icon {
+    color: white;
+    background-color: var.$deep-purple;
+    transition: all 0.3s ease-in-out;
+  }
+
+  & a:hover > span.nav-item-name,
+  & a.active-link > span.nav-item-name {
+    color: var.$deep-purple;
+    transition: all 10s ease-in-out;
+  }
+
+  mat-divider {
+    border-top-color: #ffffff;
+    border-top-width: 2px;
+  }
+
+  a.profile.mat-mdc-list-item.mdc-list-item.profile.mat-mdc-list-item-interactive.mat-mdc-list-item-single-line.mdc-list-item--with-one-line.ng-star-inserted {
+  }
+
+  .notification-dot {
+    height: 8px;
+    width: 8px;
+    background-color: #f00;
+    border-radius: 50%;
+    display: inline-block;
+    margin-left: 12px;
+    top: 10px;
+  }
+}
+
+mat-nav-list.container-mobile {
+  height: 100%;
+  background: white;
+  max-width: 100vw;
+  font-size: 16px;
+  max-width: 100vw;
+  height: 100%;
+  overflow-y: scroll;
+
+  & a {
+    padding: 0 30px;
+  }
+
+  .profile-container img {
+    border-radius: 50%;
+    box-sizing: border-box;
+    margin-right: 10px;
+    width: 24px;
+  height: 24px;
+  }
+
+  .profile {
+    position: relative;
+    top: -6px;
+  }
+
+  .profile-container mat-icon {
+    width: 24px;
+    height: 24px;
+    margin: 0;
+    padding: 0;
+    position: relative;
+  }
+
+  .notification-dot {
+    height: 8px;
+    width: 8px;
+    background-color: #f00;
+    border-radius: 50%;
+    display: inline-block;
+    margin-left: 12px;
+    top: 10px;
+  }
+
+  .single-line-shimmer {
+    position: relative;
+    left: 10px;
+    bottom: 8px;
+  }
+
+  a mat-icon {
+    position: relative;
+    top: 5px;
+    padding-right: 5px;
+  }
+
+  mat-divider {
+    @include mixins.mat-divider-nav;
+  }
+}
+
+// TODO: Fix SASS styles not rendering correctly
+// // DESKTOP SIDENAVBAR STYLES
+// @mixin desktop-view {
+//   @include bp.desktop {
+//     @content;
+//   }
+
+//   @include bp.large-desktop {
+//     @content;
+//   }
+// }
+
+// // MOBILE SIDENAVBAR STYLES
+// @mixin mobile-view {
+//   @include bp.mobile {
+//     @content;
+//   }
+
+//   @include bp.tablet {
+//     @content;
+//   }
+
+//   @include bp.tablet-landscape {
+//     @content;
+//   }
+// }
+
+// @include mobile-view {
+//   mat-nav-list.container {
+//     height: 100vh;
+//     background: red;
+//     margin-top: 80px;
+//     font-size: 24px;
+//     width: 100%;
+
+//     & a {
+//       display: flex;
+//       align-items: center;
+//       justify-content: center;
+//       padding: 40px 15px 30px 50px;
+//     }
+
+//     .profile-container img {
+//       border-radius: 50%;
+//       box-sizing: border-box;
+//       margin-right: 10px;
+//       width: 45px;
+//       height: 45px;
+//       font-size: 28px;
+//     }
+
+//     .profile-container mat-icon {
+//       width: 24px;
+//       height: 24px;
+//       margin: 0;
+//       padding: 0;
+//       position: relative;
+//     }
+
+//     & a:first-child {
+//       padding-top: 70px;
+//     }
+
+//     & a mat-icon {
+//       border-radius: 50%;
+//       background-color: #ccd6d6;
+//       padding: 9px 9px;
+//       box-sizing: border-box;
+//       color: var.$dark-blue-gray;
+//       margin-right: 10px;
+//       width: 45px;
+//       height: 45px;
+//       font-size: 28px;
+//     }
+
+//     & a span {
+//       position: relative;
+//       top: -15px;
+//       left: 10px;
+//       color: var.$dark-blue-gray;
+//       font-weight: 700;
+//       font-size: 15px;
+
+//       &.profile {
+//         display: flex;
+//         flex-direction: column;
+//         gap: 10px;
+//         padding-right: 15px;
+//         padding-left: 42px;
+//         top: -37px;
+
+//         &span {
+//           overflow-wrap: break-word;
+//         }
+//       }
+//     }
+
+//     & a:hover {
+//       background-color: var.$light-lilac;
+//       color: var.$bright-purple;
+//       transition: all 0.35s ease-in-out;
+//     }
+
+//     & a:hover mat-icon {
+//       color: white;
+//       background-color: var.$deep-purple;
+//       transition: all 0.3s ease-in-out;
+//     }
+
+//     & a:hover > span.nav-item-name {
+//       color: var.$deep-purple;
+//       transition: all 10s ease-in-out;
+//     }
+
+//     mat-divider {
+//       border-top-color: #ffffff;
+//       border-top-width: 2px;
+//     }
+
+//     a.profile.mat-mdc-list-item.mdc-list-item.profile.mat-mdc-list-item-interactive.mat-mdc-list-item-single-line.mdc-list-item--with-one-line.ng-star-inserted {
+//     }
+
+//     .notification-dot {
+//       height: 8px;
+//       width: 8px;
+//       background-color: #f00;
+//       border-radius: 50%;
+//       display: inline-block;
+//       margin-left: 12px;
+//       top: 10px;
+//     }
+
+//     .single-line-shimmer {
+//       position: relative;
+//       left: 10px;
+//       bottom: 8px;
+//     }
+//   }
+// }
+
+// @include desktop-view {
+//   mat-nav-list.container {
+//     height: 100vh;
+//     background: linear-gradient(to bottom, var.$off-white, var.$isabelline);
+//     margin-top: 80px;
+//     font-size: 24px;
+//     width: 100%;
+
+//     & a {
+//       display: flex;
+//       align-items: center;
+//       justify-content: center;
+//       padding: 40px 15px 30px 50px;
+//     }
+
+//     .profile-container img {
+//       border-radius: 50%;
+//       box-sizing: border-box;
+//       margin-right: 10px;
+//       width: 45px;
+//       height: 45px;
+//       font-size: 28px;
+//     }
+
+//     .profile-container mat-icon {
+//       width: 24px;
+//       height: 24px;
+//       margin: 0;
+//       padding: 0;
+//       position: relative;
+//     }
+
+//     & a:first-child {
+//       padding-top: 70px;
+//     }
+
+//     & a mat-icon {
+//       border-radius: 50%;
+//       background-color: #ccd6d6;
+//       padding: 9px 9px;
+//       box-sizing: border-box;
+//       color: var.$dark-blue-gray;
+//       margin-right: 10px;
+//       width: 45px;
+//       height: 45px;
+//       font-size: 28px;
+//     }
+
+//     & a span {
+//       position: relative;
+//       top: -15px;
+//       left: 10px;
+//       color: var.$dark-blue-gray;
+//       font-weight: 700;
+//       font-size: 15px;
+
+//       &.profile {
+//         display: flex;
+//         flex-direction: column;
+//         gap: 10px;
+//         padding-right: 15px;
+//         padding-left: 42px;
+//         top: -37px;
+
+//         &span {
+//           overflow-wrap: break-word;
+//         }
+//       }
+//     }
+
+//     & a:hover {
+//       background-color: var.$light-lilac;
+//       color: var.$bright-purple;
+//       transition: all 0.35s ease-in-out;
+//     }
+
+//     & a:hover mat-icon {
+//       color: white;
+//       background-color: var.$deep-purple;
+//       transition: all 0.3s ease-in-out;
+//     }
+
+//     & a:hover > span.nav-item-name {
+//       color: var.$deep-purple;
+//       transition: all 10s ease-in-out;
+//     }
+
+//     mat-divider {
+//       border-top-color: #ffffff;
+//       border-top-width: 2px;
+//     }
+
+//     a.profile.mat-mdc-list-item.mdc-list-item.profile.mat-mdc-list-item-interactive.mat-mdc-list-item-single-line.mdc-list-item--with-one-line.ng-star-inserted {
+//     }
+
+//     .notification-dot {
+//       height: 8px;
+//       width: 8px;
+//       background-color: #f00;
+//       border-radius: 50%;
+//       display: inline-block;
+//       margin-left: 12px;
+//       top: 10px;
+//     }
+
+//     .single-line-shimmer {
+//       position: relative;
+//       left: 10px;
+//       bottom: 8px;
+//     }
+//   }
+// }

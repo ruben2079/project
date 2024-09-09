@@ -1,0 +1,16 @@
+<mat-toolbar class="desktop-nav-bar">
+  <!-- NAV ITEMS (LEFT) -->
+  <img class="logo" alt="GARP logo"
+    src="https://www.garp.org/hubfs/Website/Logos/GARP%20Corporate%20Logo%20-%20Short%20Knockout.png" />
+    <div class="desktop-nav-bar__dropdown" *ngFor="let navItem of navItemsList; let i = index">
+      <app-nav-dropdown [navItem]="navItem" [navItemIndex]="i"></app-nav-dropdown>
+    </div>
+  <!-- NAV ITEMS (RIGHT) -->
+  <div class="nav-items-end">
+    <!-- NOTIFICATIONS -->
+    <!-- <mat-icon class="notification-icon" [matBadge]="2" matBadgeSize="small" matBadgeColor="warn"
+      [matBadgeHidden]="false" MatBadgePosition="before">notifications</mat-icon> -->
+    <!-- LOG OUT -->
+    <app-logout></app-logout>
+  </div>
+</mat-toolbar>
