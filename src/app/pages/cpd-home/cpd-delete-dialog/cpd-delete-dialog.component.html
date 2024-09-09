@@ -1,0 +1,25 @@
+<div class="cpd-delete-dialog">
+  <div class="mat-dialog-title">
+    <h2>Delete this submission?</h2>
+    <div class="close-button-wrapper">
+      <span class="close-button" (click)="close()">x</span>
+    </div>
+  </div>
+
+   <mat-dialog-content>
+    <span>Are you sure you'd like to delete </span>
+    <span class="activity">{{activity.title}}</span>
+    <span>?</span>
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <app-primary-button
+      [text]="'Delete'" 
+      (buttonClick)="delete()">
+    </app-primary-button>
+    <button mat-button (click)="close()" class="cancel-button">
+      <span class="cancel">Cancel</span>
+      <span><mat-icon>arrow_circle_right</mat-icon></span>
+    </button>
+  </mat-dialog-actions>
+</div>

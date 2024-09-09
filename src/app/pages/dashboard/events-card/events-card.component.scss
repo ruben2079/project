@@ -1,0 +1,49 @@
+@use "../../../styles/_variables" as var;
+@use "../../../styles/_fonts" as fonts;
+@use "../../../styles/_mixins" as mixins;
+
+.header {
+  @include mixins.dashcard-header;
+}
+
+.event {
+  margin-top: 5px;
+  margin-bottom: 25px;
+  padding-left: 20px;
+  padding-right: 20px;
+  flex-wrap: wrap;
+
+  &.no-vertical-margin {
+    margin-bottom: -15px !important;
+    margin-top: 0 !important;
+  }
+  mat-list-item {
+    overflow: visible !important;
+    padding: 0;
+    @include mixins.dashcard-font;
+
+    span.event-title {
+      font-weight: 700;
+      color: var.$deep-purple;
+      padding-bottom: 5px;
+      word-wrap: break-word;
+      width: 100%;
+      white-space: normal;
+      text-overflow: clip;
+    }
+  }
+
+  .event-type {
+    margin: 0 5px 0 0;
+    background-color: var.$slate-gray;
+    color: var.$white;
+    position: relative;
+    padding: 3px 8px;
+    text-transform: uppercase;
+    border-radius: 2px;
+  }
+
+  .date {
+    margin-left: 5px;
+  }
+}

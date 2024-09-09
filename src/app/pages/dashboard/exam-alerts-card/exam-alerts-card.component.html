@@ -1,0 +1,20 @@
+<mat-card class="exam-alerts-card">
+  <mat-card-header class="header">
+    <mat-icon>notifications_active</mat-icon>
+    New Notifications
+  </mat-card-header>
+  <mat-card-content>
+    <p class="exam-alerts-card__text">
+      <span matListItemLine class="exam-alerts-card__title">
+        {{ dashboardCardDetails?.newNotification?.notificationDate | salesforceDate | date: 'MMM. d, yyyy' }}</span>
+      <span class="notification-details"
+        [innerHTML]="dashboardCardDetails?.newNotification?.notificationDetails | sanitizeHtml"></span>
+    </p>
+  </mat-card-content>
+  <mat-card-footer>
+    <mat-card-actions align="end">
+      <app-secondary-button text="See All" icon="arrow_circle_right" (buttonClick)="openExamAlertsModal()">
+      </app-secondary-button>
+    </mat-card-actions>
+  </mat-card-footer>
+</mat-card>

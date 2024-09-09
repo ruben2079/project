@@ -1,0 +1,14 @@
+
+<mat-card  class="advertising">
+  <mat-card-header>
+    <mat-card-title>Ad Type: {{ dashboardCardDetails?.adType }}</mat-card-title>
+    <mat-card-subtitle>Admin Name {{ dashboardCardDetails?.adminName }}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <img mat-card-image [src]="imgURL" alt="Advertisement Image">
+    {{ dashboardCardDetails.content }}
+    <p>Reg Status: {{ dashboardCardDetails?.isRegistrationOpen ? "Opened" : "Registration will open on " + dashboardCardDetails.nextAdminRegistrationOpenDate }}</p>
+    <!-- <img mat-card-sm-image
+      [src]="dashboardCardDetails.imageURL ? dashboardCardDetails.imageURL : 'https://www.garp.org/'"> -->
+  </mat-card-content>
+</mat-card>

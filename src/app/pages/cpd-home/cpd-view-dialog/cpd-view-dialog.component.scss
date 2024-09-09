@@ -1,0 +1,75 @@
+@use "../../../styles/_variables" as var;
+@use "../../../styles/_mixins" as mixins;
+@use "../../../styles/_fonts" as fonts;
+
+.cpd-view-dialog {
+  .mat-dialog-title {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 25px 0px 25px;
+    
+    h2 {
+      font-family: map-get(fonts.$klinic-slab-bold, "font-family");
+      font-size: 25px;
+      font-weight: 900;
+      margin-bottom: 15px;
+    }
+
+    .close-button-wrapper {
+      text-align: right;
+      span {
+        position: relative;
+        top: 6px;
+
+        &.close-button {
+            padding: 5px;
+            display: inline-block;
+            width: 20px;
+            text-align: center;
+            font-weight: bold;
+            color: var.$bright-purple;
+            @include mixins.borderRadius(3px, solid , var.$bright-purple , 100%);
+            &:hover {
+                cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+
+  mat-dialog-content {
+    padding-top: 5px;
+
+    .row-1, .row-2 {
+      display: flex;
+      gap: 20px;
+    }
+  }
+
+  label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var.$corporate-black;
+    margin-bottom: 6px;
+  }
+
+  .property {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 34px;
+
+    span {
+      color: var.$corporate-black;
+    }
+
+    .url {
+      color: var.$bright-purple;
+      font-weight: 500;
+    }
+  }
+}
+
+::ng-deep .mat-mdc-dialog-container .mdc-dialog__surface {
+  border-radius: 12px !important;
+}

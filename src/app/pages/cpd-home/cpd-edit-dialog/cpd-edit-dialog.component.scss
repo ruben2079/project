@@ -1,0 +1,122 @@
+@use "../../../styles/_variables" as var;
+@use "../../../styles/_mixins" as mixins;
+@use "../../../styles/_fonts" as fonts;
+@use "../../../styles/_breakpoints" as bp;
+
+.cpd-edit-dialog {
+  .mat-dialog-title {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 25px 0px 25px;
+    
+    h2 {
+      font-family: map-get(fonts.$klinic-slab-bold, "font-family");
+      font-size: 25px;
+      font-weight: 900;
+      margin-bottom: 15px;
+    }
+
+    .close-button-wrapper {
+      text-align: right;
+      span {
+        position: relative;
+        top: 6px;
+
+        &.close-button {
+            padding: 5px;
+            display: inline-block;
+            width: 20px;
+            text-align: center;
+            font-weight: bold;
+            color: var.$bright-purple;
+            @include mixins.borderRadius(3px, solid , var.$bright-purple , 100%);
+            &:hover {
+                cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+
+  mat-dialog-content {
+    padding-top: 5px;
+
+    form {
+      display: flex;
+      flex-direction: column;
+
+      .row-1, .row-2 {
+        display: flex;
+        gap: 20px;
+      }
+
+    }
+  }
+
+  mat-dialog-actions {
+    app-primary-button {
+      margin-right: 20px;
+
+      ::ng-deep .mat-mdc-button:disabled {
+        background-color: var.$gray-disable;
+        color: var.$white;
+      }
+    }
+  }
+
+  label {
+    font-size: 14px;
+    font-weight: 500;
+    color: var.$corporate-black;
+    margin-bottom: 6px;
+  }
+
+  .form-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    
+    mat-form-field {
+      width: 100%;
+    }
+  }
+}
+
+:host {
+  ::ng-deep {
+      .mdc-text-field--filled {
+          --mdc-filled-text-field-active-indicator-height: 0px;
+          --mdc-filled-text-field-focus-active-indicator-height: 2px;
+          --mdc-filled-text-field-container-shape: 4px;
+          border-top-left-radius: var(--mdc-filled-text-field-container-shape);
+          border-top-right-radius: var(--mdc-filled-text-field-container-shape);
+          border-bottom-right-radius: 0;
+          border-bottom-left-radius: 0;
+          border-radius: 10px;
+          border: 1px solid var.$gray;
+          width: 99.2%;
+          @include bp.mobile {
+              width: 98.2%;
+          }
+      }
+      .mdc-text-field--outlined {
+          border-radius: 10px;
+          border: 1px solid var.$white;
+          width: 99%;
+      }
+      .mat-mdc-card-content {
+          padding: 0;
+      }
+      .mat-mdc-button.mat-unthemed {
+          color: var.$white;
+      }
+
+      .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+          background-color: var.$white;
+      }
+  }
+}
+
+::ng-deep .mat-mdc-dialog-container .mdc-dialog__surface {
+  border-radius: 12px !important;
+}

@@ -1,0 +1,19 @@
+
+<mat-card  class="member-directory">
+  <mat-card-header class="header">
+    <mat-icon>people</mat-icon>Member Directory
+  </mat-card-header>
+  <mat-card-content>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus posuere sit amet ex nec rhoncus.</p>
+    <div class="search-bar">
+      <input type="text" placeholder="Search by name, location, or company" [(ngModel)]="searchtext">
+      <button>
+        <i class="material-icons" (click)="seeAll()">search</i>
+      </button>
+    </div>
+  </mat-card-content>
+  <mat-card-footer>
+    <mat-card-actions align="end">
+      <app-secondary-button text="View Directory" icon="arrow_circle_right" (buttonClick)="seeAll()"></app-secondary-button>
+    </mat-card-actions>
+  </mat-card-footer>

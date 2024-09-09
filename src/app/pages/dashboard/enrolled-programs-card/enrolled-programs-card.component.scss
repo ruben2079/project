@@ -1,0 +1,24 @@
+@use "../../../styles/_variables" as var;
+@use "../../../styles/_fonts" as fonts;
+@use "../../../styles/_mixins" as mixins;
+
+.enrolled-programs {
+  .header {
+    @include mixins.dashcard-header;
+  }
+
+  .programTitle {
+    font-weight: 800;
+    color: var.$deep-purple;
+    padding-bottom: 5px;
+    text-overflow: unset;
+    text-wrap: wrap;
+    &::before {
+      height: auto;
+    }
+  }
+
+  mat-list-item {
+    @include mixins.dashcard-font;
+  }
+}

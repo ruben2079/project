@@ -1,0 +1,18 @@
+<div class="dashboard">
+  <div class="dashboard-grid">
+    <div *ngIf="isObjectEmpty(dashboardCardDetails); else dataLoaded">
+      <div class="grid-container">
+        <div *ngFor="let loadingDashcard of [1,2,3]">
+          <app-dashcard [loading]="true"></app-dashcard>
+        </div>
+      </div>
+    </div>
+    <ng-template #dataLoaded>
+      <div class="grid-container">
+        <div *ngFor="let dashCard of dashboardCardsList">
+          <app-dashcard [dashCard]="dashCard" [dashboardCardDetails]="dashboardCardDetails"></app-dashcard>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+</div>

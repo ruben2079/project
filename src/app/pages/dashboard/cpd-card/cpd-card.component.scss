@@ -1,0 +1,13 @@
+@use "../../../styles/_variables" as var;
+@use "../../../styles/_fonts" as fonts;
+@use "../../../styles/_mixins" as mixins;
+
+.cpd-card {
+  .header {
+    @include mixins.dashcard-header;
+  }
+
+  .mat-card-content {
+    @include mixins.dashcard-font;
+  }
+}

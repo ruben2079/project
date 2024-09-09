@@ -1,0 +1,14 @@
+@use "../../../../../styles/_variables" as var;
+@use "../../../../../styles/_breakpoints" as bp;
+@use "../../../../../styles/_fonts" as fonts;
+
+.submission-received {
+  width: var.$program-card-width;
+  card-field {
+    color: var.$dark-blue-gray;
+  }
+
+  .warning-icon {
+    color: var.$dark-blue-gray;
+  }
+}

@@ -1,0 +1,132 @@
+<div class="my-cpd">
+  <!-- Header Section -->
+  <div class="manage-container">
+    <div class=header>
+      <h2>Continuing Professional Development</h2>
+      <div class="cycle-container" *deviceType="'desktop'">
+        <p class="cycle-text">Cycle: </p>
+        <mat-form-field appearance="fill">
+          <mat-select [formControl]="cycleControl">
+            <mat-option *ngFor="let entry of cycles" [value]="entry">
+              {{ entry }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="breadcrumb-container">
+      <span class="link" routerLink="/dashboard"><mat-icon>home</mat-icon></span>
+      <span class="link" routerLink="/programs">Programs</span>
+      <span class="arrow"> > </span>
+      <span class="link" routerLink="/cpd">Continuing Professional Development</span>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="left-container">
+      <!-- Buttons Section -->
+      <table class="filter-container" *ngIf="currentCycle && cpdData.CPDProgramInfo.currentCycle===currentCycle.cycleName">
+        <div class="buttons-header">Manage CPD Credits</div>
+        <ul>
+          <li (click)="openEditDialog()">Add Credits</li>
+          <li (click)="downloadHandbook()">Download Handbook</li>
+          <li (click)="navigateToCreditOpportunities()">Browse Credit Opportunities</li>
+        </ul>
+      </table>
+
+      <!-- Mobile Cycle Control -->
+      <div class="cycle-container" *deviceType="'mobile'">
+        <p class="cycle-text">Cycle: </p>
+        <mat-form-field appearance="fill">
+          <mat-select [formControl]="cycleControl">
+            <mat-option *ngFor="let entry of cycles" [value]="entry">
+              {{ entry }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <!-- Tables Section -->
+      <div class="cpd-container" *ngIf="currentCycle; else loading">
+        <ng-container *ngIf="cpdData.CPDProgramInfo.currentCycle===currentCycle.cycleName">
+          <h3>Pending Activities</h3>
+          <table class="cpd-table" *ngIf="currentCycle?.pendingClaims?.length">
+            <tbody>
+              <tr *ngFor="let item of currentCycle?.pendingClaims">
+                <td class="date">{{ item.dateOfCompletion | salesforceDate }}</td>
+                <td class="event-name">
+                  <a (click)="navigateToEventLink()" class="name-text">{{ item.title }}</a>
+                </td>
+                <td class="credits">{{item.credits.toString() + ' credits'}}</td>
+                <td>
+                  <div class="action-container">
+                    <mat-icon class="material-icons-outlined" matTooltip="Edit" (click)="openEditDialog(item)">edit</mat-icon>
+                    <mat-icon class="material-icons-outlined" matTooltip="Delete" (click)="openDeleteDialog(item)">delete</mat-icon>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <table class="cpd-table" *ngIf="currentCycle && !currentCycle.pendingClaims.length">
+            <tbody>
+              <tr>
+                <td class="no-cpd">No Pending Credits</td>
+              </tr>
+            </tbody>
+          </table>
+        </ng-container>
+
+        <h3>Approved Activities</h3>
+        <table class="cpd-table" *ngIf="currentCycle?.approvedClaims?.length">
+          <tbody>
+            <tr *ngFor="let item of currentCycle?.approvedClaims">
+              <td class="date">{{ item.dateOfCompletion | salesforceDate }}</td>
+              <td class="event-name">
+                <a (click)="navigateToEventLink()" class="name-text">{{ item.title }}</a>
+              </td>
+              <td class="credits">{{item.credits.toString() + ' credits'}}</td>
+              <td>
+                <div class="action-container">
+                  <div class="details" matTooltip="View" (click)="openViewDialog(item)">Details</div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <table class="cpd-table" *ngIf="currentCycle && !currentCycle.approvedClaims.length">
+          <tbody>
+            <tr>
+              <td class="no-cpd">No Approved Credits</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+      <!-- Mobile CPD Chart -->
+      <app-cpd-card class="cpd-chart" *deviceType="'mobile'"></app-cpd-card>
+    </div>
+    
+    <!-- Chart Section -->
+    <div class="right-container cpd-chart" *deviceType="'desktop'">
+      <app-cpd-card></app-cpd-card>
+    </div>
+  </div>
+</div>
+
+<!-- Shimmer Loading -->
+<ng-template #loading>
+  <div class="loading-shimmer">
+    <table class="shimmer-table">
+      <app-single-line-shimmer  height="1.5rem" width="300px"></app-single-line-shimmer>
+      <app-single-line-shimmer  height="2.5rem" width="100%"></app-single-line-shimmer>
+    </table>
+    <app-single-line-shimmer  height="1.5rem" width="300px"></app-single-line-shimmer>
+    <table class="shimmer-table">
+      <app-content-shimmer [itemCount]="3"></app-content-shimmer><br>
+    </table>
+    <app-single-line-shimmer  height="1.5rem" width="300px"></app-single-line-shimmer>
+    <table class="shimmer-table">
+      <app-content-shimmer [itemCount]="3"></app-content-shimmer><br>
+    </table>
+  </div>
+</ng-template>

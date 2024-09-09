@@ -1,0 +1,21 @@
+<mat-dialog-content class="dialog-content">
+  <div class="dialog-content__header">
+    <div class="dialog-content__header-text">
+      <mat-icon>notifications_active</mat-icon> Notifications
+    </div>
+    <mat-icon mat-icon-button mat-dialog-close class="dialog-content__header-close">close</mat-icon>
+  </div>
+  <div class="dialog-content__body" cdkScrollable>
+    <div *ngFor="let notification of notifications; let i = index">
+      <div class="dialog-content__notification">
+        <span class="dialog-content-notification__title"
+          [innerHTML]="notification.notificationTitle | sanitizeHtml"></span><br>
+          <span
+            class="dialog-content-notification__date">{{ notification.notificationDate | salesforceDate | date:'MMM. d, y' }}</span><br>
+          <p class="dialog-content-notification__details" [innerHTML]="notification.notificationDetails | sanitizeHtml">
+          </p>
+      </div>
+      <mat-divider class="dialog-content__divider" *ngIf="i < notifications.length - 1"></mat-divider>
+    </div>
+  </div>
+</mat-dialog-content>

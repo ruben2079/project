@@ -1,0 +1,36 @@
+<mat-card class="member-profile">
+  <mat-card-header class="close-card-container">
+    <mat-icon *ngIf="!isNotificationHidden" matSuffix class="my-icon hide-notification-button" (click)="hideNotification()">cancel</mat-icon>
+  </mat-card-header>
+  <mat-card-header *ngIf="!dashboardCardDetails.isProfileOutDated" class="header">
+    <mat-icon>account_circle</mat-icon>
+    Complete Your Profile
+  </mat-card-header>
+  <div *ngIf="isNotificationHidden">
+    <mat-card-content>
+      <p>This notification will be hidden for 6 months</p>
+      <div class="button-container">
+        <button (click)="undoChanges()" class="undo-copy">Undo</button>
+      </div>
+    </mat-card-content>
+  </div>
+  <ng-container *ngIf="!isNotificationHidden">
+    <mat-card-header *ngIf="dashboardCardDetails.isProfileOutDated" class="header">
+      <mat-icon>account_circle</mat-icon>
+      Is Your Profile Up to Date?
+    </mat-card-header>
+    <mat-card-content>
+      <div class="progress-bar" *ngIf="dashboardCardDetails.percentComplete < 100 && !dashboardCardDetails.isProfileOutDated">
+        <div class="progress" [style.width.%]="profileProgressVal"></div>
+        <div class="percentage">{{ profileProgressVal }}%</div>
+      </div>
+      <p *ngIf="!dashboardCardDetails.isProfileOutDated">Answer a few short questions to help us better recommend relevant learning, networking, and programming.</p>
+      <p *ngIf="dashboardCardDetails.isProfileOutDated">Looks like it has been a while since your profile was last updated....</p>
+    </mat-card-content>
+    <mat-card-footer>
+      <mat-card-actions align="end">
+        <app-secondary-button text="Update My Profile" icon="arrow_circle_right" (click)="profileModal()"></app-secondary-button>
+      </mat-card-actions>
+    </mat-card-footer>
+  </ng-container>
+</mat-card>

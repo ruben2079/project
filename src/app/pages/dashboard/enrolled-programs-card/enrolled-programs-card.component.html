@@ -1,0 +1,17 @@
+<mat-card class="enrolled-programs">
+  <mat-card-header class="header">
+    <mat-icon>auto_stories</mat-icon>
+    Enrolled Programs
+  </mat-card-header>
+  <mat-list>
+    <mat-list-item *ngFor="let program of (dashboardCardDetails?.enrolledPrograms | slice:0:2 ); let isLast=last">
+      <span matListItemTitle class="programTitle">{{ getProgramDisplayName(program.programType) }}</span>
+      <span>{{ program.adminPartIName }}</span>
+    </mat-list-item>
+  </mat-list>
+  <mat-card-footer>
+    <mat-card-actions align="end">
+      <app-secondary-button text="See All" icon="arrow_circle_right" (buttonClick)="navigateToMyPrograms()"></app-secondary-button>
+    </mat-card-actions>
+  </mat-card-footer>
+</mat-card>

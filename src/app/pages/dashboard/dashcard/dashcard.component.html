@@ -1,0 +1,42 @@
+<div class="dashcard" [@fadeIn]>
+  <mat-card *ngIf="loading === true">
+    <app-single-line-shimmer style="margin: 15px 15px 20px" width="100%"></app-single-line-shimmer>
+    <mat-card-content>
+      <app-content-shimmer [randomCount]="true" [min]="2" [max]="6"></app-content-shimmer>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- Member Profile Card -->
+  <ng-container *ngIf="dashCard?.name === 'Member Profile'" class="member-profile">
+    <app-member-profile-card [dashCard]="dashCard" [dashboardCardDetails]="dashboardCardDetails[dashCard.name]">
+    </app-member-profile-card>
+  </ng-container>
+
+  <ng-container *ngIf="dashCard?.name === 'Enrolled Programs'">
+    <app-enrolled-programs-card [dashCard]="dashCard" [dashboardCardDetails]="dashboardCardDetails[dashCard.name]">
+    </app-enrolled-programs-card>
+  </ng-container>
+
+  <ng-container *ngIf="dashCard?.name === 'Advertisement'">
+    <app-advertisement-card [dashCard]="dashCard" [dashboardCardDetails]="dashboardCardDetails[dashCard.name]">
+    </app-advertisement-card>
+  </ng-container>
+
+  <ng-container *ngIf="dashCard?.name === 'Member Directory'">
+    <app-member-directory-card></app-member-directory-card>
+  </ng-container>
+
+  <ng-container *ngIf="dashCard?.name === 'CPD'">
+    <app-cpd-card></app-cpd-card>
+  </ng-container>
+
+  <ng-container *ngIf="dashCard?.name === 'Events'">
+    <app-events-card [dashCard]="dashCard" [dashboardCardDetails]="dashboardCardDetails[dashCard.name]">
+    </app-events-card>
+  </ng-container>
+
+  <ng-container *ngIf="dashCard?.name === 'Exam Alerts'">
+    <app-exam-alerts-card [dashboardCardDetails]="dashboardCardDetails[dashCard.name]"
+      [examAlertsList]="dashboardCardDetails['Exam Alerts List']"></app-exam-alerts-card>
+  </ng-container>
+</div>

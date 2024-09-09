@@ -1,0 +1,72 @@
+@use "../../../styles/_variables" as var;
+@use "../../../styles/_fonts" as fonts;
+@use "../../../styles/_mixins" as mixins;
+
+.member-directory {
+
+  .header {
+    @include mixins.dashcard-header;
+
+  }
+
+  mat-card-content {
+    @include mixins.dashcard-font;
+  }
+
+  button{
+    cursor: pointer;
+  }
+  .view-upcoming-btn{
+    font-weight: 800;
+    color: #7257ff;
+    padding-left: 12px;
+    cursor: pointer;
+  }
+}
+mat-card {
+    // width: 295px;
+    // display: flex;
+    // flex-direction: column;
+    // height: 100%;
+    // min-height: auto;
+    // position: relative;
+    // text-wrap: wrap;
+
+    display: flex;
+    flex-direction: column;
+    flex: 0 1 calc(33.33% - 20px);
+    box-sizing: border-box;
+    background-color: var.$light-cyan-gray;
+    min-height: -webkit-fill-available;
+
+}
+    mat-card-header {
+      color: var.$corporate-black;
+      font-family: "Klinic Slab";
+      font-weight: 700;
+      font-size: 20px;
+      font-weight: 800;
+
+      mat-icon {
+        color: black;
+        top: 1px;
+        position: relative;
+        padding-right: 10px;
+      }
+    }
+
+  ::ng-deep .mat-mdc-text-field-wrapper {
+    border-radius: 25px !important;
+  }
+  ::ng-deep .mdc-text-field--no-label:not(.mdc-text-field--outlined):not(.mdc-text-field--textarea) .mat-mdc-form-field-infix {
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+.mat-multi{
+    height: 60px;
+    width: 250px;
+    padding-right: 2px;
+}
+.mat-mdc-select-arrow svg {
+    fill: #7257ff !important;
+}

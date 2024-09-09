@@ -1,0 +1,54 @@
+@use "../../../styles/_variables" as var;
+@use "../../../styles/_mixins" as mixins;
+
+button.see-all:hover {
+  outline: none;
+}
+
+:host::ng-deep mat-card {
+  @include mixins.mat-card-border;
+  width: 295px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 285px;
+  max-height: 285px;
+  position: relative;
+  text-wrap: wrap;
+
+  mat-card-header {
+    font-size: 22px;
+    color: var.$corporate-black;
+
+    mat-icon {
+      color: black;
+      top: 1px;
+      position: relative;
+      padding-right: 10px;
+    }
+  }
+}
+
+:host::ng-deep .mat-mdc-list-base {
+  overflow-y: auto;
+}
+
+:host::ng-deep mat-card-footer {
+  margin-top: auto;
+}
+
+mat-icon {
+  color: var.$deep-purple;
+}
+
+
+.viewMore {
+  font-weight: 800;
+  color: var.$dark-blue-gray;
+}
+
+.viewMoreIcon {
+  top: 6px;
+  position: relative;
+  left: 2px;
+}

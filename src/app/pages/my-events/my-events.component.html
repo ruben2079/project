@@ -1,0 +1,100 @@
+<div class="my-events">
+  <!-- Events Section -->
+  <div class="events">
+    <h2>My GARP Events</h2>
+    <div class="filter-container">
+      <ul>
+        <li (click)="navigateToAllEvents()">View All Events</li>
+        <li (click)="navigateToMyAccount()">Set/Change My Chapter</li>
+      </ul>
+    </div>
+    <div class="events-container" *ngIf="eventsData; else loading">
+      <h3>Attending</h3>
+      <table class="events-table" *ngIf="eventsData?.registeredEvents?.length">
+        <tbody>
+          <tr *ngFor="let item of (eventsData.registeredEvents | sortEvents)">
+            <td class="date">{{ item.eventStartDate | salesforceDate }}</td>
+            <td class="meeting">
+              <span class="event-name" (click)="navigateToEventLink(item)">{{ item.eventName }}</span>
+              <span class="event-type">{{item.eventType}}</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <table class="events-table" *ngIf="!eventsData?.registeredEvents?.length">
+        <tbody>
+          <tr>
+            <td class="no-events">You have not signed up for any events</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Upcoming Chapter Meetings</h3>
+      <table class="events-table" *ngIf="eventsData?.upcomingChapterMeetings?.length">
+        <tbody>
+          <tr *ngFor="let item of (eventsData.upcomingChapterMeetings | sortEvents | slice:0:5)">
+            <td class="date">{{ item.eventStartDate | salesforceDate  }}</td>
+            <td>
+              <span class="event-name" (click)="navigateToEventLink(item)">{{ item.eventName }}</span>
+              <span class="event-type">{{item.eventType}}</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <table class="events-table" *ngIf="eventsData && !eventsData.upcomingChapterMeetings.length">
+        <tbody>
+          <tr>
+            <td class="no-events">There are currently no upcoming chapter meetings</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Featured Events</h3>
+      <table class="events-table" *ngIf="eventsData?.upcomingOtherEvents?.length">
+        <tbody>
+          <tr *ngFor="let item of (eventsData.upcomingOtherEvents | sortEvents |slice:0:5)">
+            <td class="date">{{ item.eventStartDate | salesforceDate  }}</td>
+            <td>
+              <span class="event-name" (click)="navigateToEventLink(item)">{{ item.eventName }}</span>
+              <span class="event-type">{{item.eventType}}</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <table class="events-table" *ngIf="eventsData && !eventsData.upcomingOtherEvents.length">
+        <tbody>
+          <tr>
+            <td class="no-events">There are currently no upcoming chapter meetings</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Notifications Section -->
+  <div class="notifications" *deviceType="'desktop'">
+    <ng-container
+      *ngIf="dashboardCardDetails?.newNotification !== null && dashboardCardDetails?.newNotification !== undefined">
+      <app-exam-alerts-card [dashboardCardDetails]="examAlertsList"
+        [examAlertsList]="examAlertsList['Exam Alerts List']"></app-exam-alerts-card>
+    </ng-container>
+  </div>
+</div>
+
+<!-- SHIMMER LOADING -->
+<ng-template #loading>
+  <div class="loading-shimmer">
+    <app-single-line-shimmer  height="1.5rem" width="300px"></app-single-line-shimmer>
+    <table class="shimmer-table">
+      <app-content-shimmer [itemCount]="3"></app-content-shimmer><br>
+    </table>
+    <app-single-line-shimmer  height="1.5rem" width="300px"></app-single-line-shimmer>
+    <table class="shimmer-table">
+      <app-content-shimmer [itemCount]="3"></app-content-shimmer><br>
+    </table>
+    <app-single-line-shimmer  height="1.5rem" width="300px"></app-single-line-shimmer>
+    <table class="shimmer-table">
+      <app-content-shimmer [itemCount]="3"></app-content-shimmer><br>
+    </table>
+  </div>
+</ng-template>

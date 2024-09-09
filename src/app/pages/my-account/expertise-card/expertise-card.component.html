@@ -1,0 +1,63 @@
+<mat-card class="shimmer-card" *ngIf="isloading">
+  <app-single-line-shimmer  height="1.5rem" width="350px"></app-single-line-shimmer>
+  <app-content-shimmer [itemCount]="5"></app-content-shimmer><br>
+  <app-single-line-shimmer  height="1.5rem" width="200px"></app-single-line-shimmer>
+  <app-content-shimmer [itemCount]="5"></app-content-shimmer><br>
+  <app-single-line-shimmer  height="1.5rem" width="200px"></app-single-line-shimmer>
+  <app-content-shimmer [itemCount]="5"></app-content-shimmer><br>
+</mat-card>
+  <mat-card  class="member-directory" *ngIf="!isloading">
+      <mat-card-header class="header">
+        Expertise
+      </mat-card-header>
+      <mat-card-content>
+        <p>Please complete the form below if you have experience as a Subject Matter Expert in one or more areas of financial risk management and would like to collaborate with GARP on delivering risk intelligence.</p>
+        <ng-container matColumnDef="primary-chapter">
+          <div>
+            <strong style="font-weight: 800;"> Area of Expertise</strong>
+            <mat-form-field class="mat-multi" *ngIf="areaOfExpertiseSelectOptionsList">
+              <mat-select  (selectionChange)="setProfileExpertiseInfo($event,areaValue)"  [value]="selectedAreaOfExpertise"  multiple>
+                <mat-option *ngFor="let primaryChap of areaOfExpertiseSelectOptionsList" value="{{primaryChap | sanitizeHtml}}">{{primaryChap  | sanitizeHtml}}
+              </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </ng-container>
+        <ng-container matColumnDef="secondary-chapter">
+          <div>
+            <strong style="font-weight: 800;"> Publishing Experience</strong>
+            <mat-form-field class="mat-multi">
+              <mat-select placeholder="None Selected" (selectionChange)="setProfileExpertiseInfo($event,publishValue)"  [value]="selectedPublishingExperience" multiple>
+                <mat-option *ngFor="let secondaryChap of publishingExperienceSelectOptionsList" [value]="secondaryChap">{{secondaryChap}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </ng-container>
+        <ng-container matColumnDef="secondary-chapter">
+            <div>
+              <strong style="font-weight: 800;"> Teaching Experience</strong>
+              <mat-form-field class="mat-multi">
+                <mat-select placeholder="None Selected" (selectionChange)="setProfileExpertiseInfo($event,teachingValue)"  [value]="selectedTeachingExperience" multiple>
+                  <mat-option *ngFor="let secondaryChap of teachingExperienceSelectOptionsList" [value]="secondaryChap">{{secondaryChap}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </ng-container>
+          <ng-container matColumnDef="secondary-chapter">
+            <div>
+              <strong style="font-weight: 800;"> Expert Participaton</strong>
+              <mat-form-field class="mat-multi">
+                <mat-select placeholder="None Selected" (selectionChange)="setProfileExpertiseInfo($event,expertValue)"  [value]="selectedExpertParticipation" multiple>
+                  <mat-option *ngFor="let secondaryChap of expertParticipationSelectOptionsList" [value]="secondaryChap">{{secondaryChap}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </ng-container>
+      </mat-card-content>
+      <mat-card-footer>
+
+      </mat-card-footer>
+  </mat-card>

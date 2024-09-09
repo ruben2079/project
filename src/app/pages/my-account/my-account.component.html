@@ -1,0 +1,137 @@
+<div class="my-account">
+  <div class="header-container">
+    <h2>My Account</h2>
+    <div class="email-link">
+      <div class="link">Email Subscription Preferences</div>
+      <mat-icon>edit_square</mat-icon>
+    </div>
+  </div>
+
+  <div class="cards-container">
+    <!-- My Account Card  -->
+    <mat-card *ngIf="this.personalInfo else loading">
+      <mat-card-header>Personal Information</mat-card-header>
+      <mat-card-content>
+        <img class="photo"
+          mat-card-image
+          [src]="personalInfo?.avatarPhoto ?? 'https://www.garp.org/hubfs/Website/GBI/GBI-Development/assets/images/emptyHead.png'"
+        />
+        <h4>Academic Information</h4>
+        <div *ngIf="personalInfo?.firstName">
+          <span class="label">First Name: </span><span class="value">{{ personalInfo.firstName }}</span>
+        </div>
+        <div *ngIf="personalInfo?.lastName">
+          <span class="label">Last Name: </span><span class="value">{{ personalInfo.lastName }}</span>
+        </div>
+        <div *ngIf="personalInfo?.garpId">
+          <span class="label">GARP ID: </span><span class="value">{{ personalInfo.garpId }}</span>
+        </div>
+        <div *ngIf="personalInfo?.email">
+          <span class="label">Email: </span><span class="value link">{{ personalInfo.email }}</span>
+        </div>        
+        <div *ngIf="personalInfo?.phone">
+          <span class="label">Phone: </span><span class="value"> {{ personalInfo.phone }}</span>
+        </div>
+        <h4 *ngIf="personalInfo?.billingAddress">Billing Address</h4>
+        <div *ngIf="personalInfo?.billingAddress as addr">
+          <div>{{ addr.street1 }} </div>
+          <div>{{ addr.city }}, {{ addr.provence }} {{ addr.postalCode }}</div>
+          <div>{{ addr.country }}</div>
+        </div>
+        <h4 *ngIf="personalInfo?.mailingAddress">Mailing Address</h4>
+        <div *ngIf="personalInfo?.mailingAddress as addr">
+          <div>{{ addr.street1 }} </div>
+          <div>{{ addr.city }}, {{ addr.provence }} {{ addr.postalCode }}</div>
+          <div>{{ addr.country }}</div>
+        </div>
+      </mat-card-content>
+      <mat-card-footer>
+        <mat-card-actions align="end">
+          <app-secondary-button text="Edit" icon="edit_square"></app-secondary-button>
+        </mat-card-actions>
+      </mat-card-footer>
+    </mat-card>  
+    
+    <!-- Career Info Card -->
+    <mat-card *ngIf="this.careerContactInfo else loading">
+      <mat-card-header>
+        <!-- <mat-icon>notifications_active</mat-icon> -->
+        Career Information
+      </mat-card-header>
+      <mat-card-content>
+        <h4>Academic Information</h4>
+        <div *ngIf="careerContactInfo?.school">
+          <span class="label">Current or Most recent School attended: </span><span class="value">{{ careerContactInfo.school }}</span>
+        </div>
+        <div *ngIf="careerContactInfo?.highestDegree">
+          <span class="label">Degree/Program: </span><span class="value">{{ careerContactInfo.highestDegree }}</span>
+        </div>
+        <div *ngIf="careerContactInfo?.expectedGraduationYear">
+          <span class="label">Year of Graduation: </span><span class="value">{{ careerContactInfo.expectedGraduationYear }}</span>
+        </div>
+        <div *ngIf="careerContactInfo?.expectedGraduationMonth">
+          <span class="label">Degree: </span><span class="value">{{ careerContactInfo.expectedGraduationMonth }}</span>
+        </div>
+        <h4 >Employment Information</h4>
+        <div *ngIf="careerContactInfo?.workingStatus">
+          <span class="label">Working Status: </span><span class="value">{{ careerContactInfo.workingStatus }}</span>
+        </div>
+        <div *ngIf="careerContactInfo?.industry">
+          <span class="label">Industry: </span><span class="value">{{ careerContactInfo.industry }}</span>
+        </div>
+        <div *ngIf="careerContactInfo?.industryStartWorkingYear">
+          <span class="label">Starting Year in Industry: </span><span class="value">{{ careerContactInfo.industryStartWorkingYear }}</span>
+        </div>
+        <div *ngIf="careerContactInfo?.company">
+          <span class="label">Current/Last Company: </span><span class="value">{{ careerContactInfo.company }}</span>
+        </div>
+        <div *ngIf="careerContactInfo?.professionalLevel">
+          <span class="label">Professional Level: </span><span class="value">{{ careerContactInfo.professionalLevel }}</span>
+        </div>
+        <div *ngIf="careerContactInfo?.jobFunction">
+          <span class="label">Job Function: </span><span class="value">{{ careerContactInfo.jobFunction }}</span>
+        </div>
+        <div *ngIf="careerContactInfo?.riskSpecialty">
+          <span class="label">Risk Specialty: </span><span class="value">{{ careerContactInfo.riskSpecialty }}</span>
+        </div>
+        <div *ngIf="careerContactInfo?.riskManagementStartWorkingYear">
+          <span class="label">Risk Industry Starting Year: </span><span class="value">{{ careerContactInfo.riskManagementStartWorkingYear }}</span>
+        </div>
+        <div *ngIf="careerContactInfo?.highestDegree">
+          <span class="label">Professional Designations: </span><span class="value">{{ careerContactInfo | filterProfessionalDesignations }}</span>
+        </div>
+      </mat-card-content>
+      <mat-card-footer>
+        <mat-card-actions align="end">
+          <app-secondary-button text="Edit" icon="edit_square" (click)="updateProfile()"></app-secondary-button>
+        </mat-card-actions>
+      </mat-card-footer>
+    </mat-card>
+    <ng-container>
+      <div ></div>
+    </ng-container>
+  <ng-container>
+    <app-preferred-chapters-card  class="mat-card-box"></app-preferred-chapters-card>
+  </ng-container>
+
+    <ng-container>
+      <app-directory-settings-card class="mat-card-box-card"> </app-directory-settings-card>
+    </ng-container>
+
+    <ng-container>
+      <app-expertise-card class="mat-card-box-card"> </app-expertise-card>
+    </ng-container>
+  </div>
+</div>
+
+<!-- SHIMMER LOADING -->
+<ng-template #loading>
+  <mat-card class="shimmer-card">
+    <app-single-line-shimmer  height="1.5rem" width="350px"></app-single-line-shimmer>
+    <app-content-shimmer [itemCount]="5"></app-content-shimmer><br>
+    <app-single-line-shimmer  height="1.5rem" width="200px"></app-single-line-shimmer>
+    <app-content-shimmer [itemCount]="5"></app-content-shimmer><br>
+    <app-single-line-shimmer  height="1.5rem" width="200px"></app-single-line-shimmer>
+    <app-content-shimmer [itemCount]="5"></app-content-shimmer><br>
+  </mat-card>
+</ng-template>

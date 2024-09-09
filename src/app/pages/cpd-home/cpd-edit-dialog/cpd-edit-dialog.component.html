@@ -1,0 +1,168 @@
+<div class="cpd-edit-dialog">
+  <div class="mat-dialog-title">
+    <h2>Credit Details</h2>
+    <div class="close-button-wrapper">
+      <span class="close-button" (click)="close()">x</span>
+    </div>
+  </div>
+
+   <mat-dialog-content>
+    <form [formGroup]="activityForm">
+      <div class="row-1">
+        <div class="form-container">
+          <label>Activity Type*</label>
+          <mat-form-field>
+            <mat-select formControlName="activityType">
+              <mat-option *ngFor="let type of activityTypes" [value]="type">
+                {{type}}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="activityForm.get('activityType')?.hasError('required')">
+              Activity Type is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="form-container">
+          <label>Area of Study</label>
+          <mat-form-field>
+            <!-- <mat-label>Area of Study</mat-label> -->
+            <mat-select formControlName="areaOfStudy">
+              <mat-option *ngFor="let type of areasOfStudy" [value]="type">
+                {{type}}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="activityForm.get('areaOfStudy')?.hasError('required')">
+              Area of Study is required
+            </mat-error>
+          </mat-form-field>
+          </div>
+      </div>
+      
+      <div class="row-2">
+        <div class="form-container">
+          <label>Date of Completion*</label>
+          <mat-form-field>
+            <input matInput [matDatepicker]="picker" formControlName="dateOfCompletion">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="activityForm.get('dateOfCompletion')?.hasError('required')">
+              Date of Completion is required
+            </mat-error>
+            <mat-error *ngIf="activityForm.get('dateOfCompletion')?.hasError('pastDate')">
+              Date must be on or before today
+            </mat-error>
+          </mat-form-field>
+        </div>
+        
+        <div class="form-container">
+          <label>Number of Credits*</label>
+          <mat-form-field>
+            <input matInput formControlName="credits">
+            <mat-error *ngIf="activityForm.get('credits')?.hasError('required')">
+              Credits is required
+            </mat-error>
+            <mat-error *ngIf="activityForm.get('credits')?.hasError('min')">
+              Credits must be at least 0.5
+            </mat-error>
+            <mat-error *ngIf="activityForm.get('credits')?.hasError('max')">
+              Credits cannot exceed 50
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <label>Comment</label>
+      <mat-form-field>
+        <textarea matInput formControlName="comments" maxlength="255"></textarea>
+        <mat-error *ngIf="activityForm.get('comments')?.hasError('required')">
+          Comment is required
+        </mat-error>
+        <mat-error *ngIf="activityForm.get('comments')?.hasError('minlength')">
+          Comment must be at least 2 characters long
+        </mat-error>
+      </mat-form-field>
+
+      <label>URL</label>
+      <mat-form-field>
+        <input matInput formControlName="URL">
+        <mat-error *ngIf="activityForm.get('URL')?.hasError('required')">
+          URL is required
+        </mat-error>
+        <mat-error *ngIf="activityForm.get('URL')?.hasError('pattern')">
+          URL must be a valid URL
+        </mat-error>
+      </mat-form-field>
+
+      <div class="form-container" *ngIf="activityForm.controls['organizationName']">
+        <label>{{currentActivity?.organizationLabel}}*</label>
+        <mat-form-field>
+          <input matInput formControlName="organizationName" maxlength="255">
+          <mat-error *ngIf="activityForm.get('organizationName')?.hasError('required')">
+            Organization Name is required
+          </mat-error>
+          <mat-error *ngIf="activityForm.get('organizationName')?.hasError('minlength')">
+            Organization Name must be at least 2 characters long
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form-container" *ngIf="activityForm.controls['provider']">
+        <label>{{currentActivity?.providerLabel}}</label>
+        <mat-form-field>
+          <input matInput formControlName="provider" maxlength="255">
+          <mat-error *ngIf="activityForm.get('provider')?.hasError('minlength')">
+            Provider must be at least 2 characters long
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form-container" *ngIf="activityForm.controls['publication']">
+        <label>{{currentActivity?.publicationLabel}}*</label>
+        <mat-form-field>
+          <input matInput formControlName="publication" maxlength="255">
+          <mat-error *ngIf="activityForm.get('publication')?.hasError('required')">
+            Publication is required
+          </mat-error>
+          <mat-error *ngIf="activityForm.get('publication')?.hasError('minlength')">
+            Publication must be at least 2 characters long
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form-container" *ngIf="activityForm.controls['title']">
+        <label>{{currentActivity?.titleLabel}}*</label>
+        <mat-form-field>
+          <input matInput formControlName="title" maxlength="255">
+          <mat-error *ngIf="activityForm.get('title')?.hasError('required')">
+            Provider is required
+          </mat-error>
+          <mat-error *ngIf="activityForm.get('title')?.hasError('minlength')">
+            Provider must be at least 2 characters long
+          </mat-error>
+        </mat-form-field>
+      </div>      
+      
+      <div class="form-container" *ngIf="activityForm.controls['contactEmail']">
+        <label>{{currentActivity?.contactEmailLabel}}*</label>
+        <mat-form-field>
+          <input matInput formControlName="contactEmail">
+          <mat-error *ngIf="activityForm.get('contactEmail')?.hasError('required')">
+            Email is required
+          </mat-error>
+          <mat-error *ngIf="activityForm.get('contactEmail')?.hasError('email')">
+            Email must be a valid email address
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </form>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <app-primary-button 
+      [disabled]="this.activityForm.invalid || submitting" 
+      [text]="type==='add' ? 'Submit' : 'Update'" 
+      (buttonClick)="save()">
+    </app-primary-button>
+  </mat-dialog-actions>
+</div>

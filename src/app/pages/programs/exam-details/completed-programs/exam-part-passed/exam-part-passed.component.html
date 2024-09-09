@@ -1,0 +1,102 @@
+<!-- FOR DEV TESTING ONLY -->
+<br>
+<em>[DEBUG]:
+  {{programsDetailInfo?.state}} - {{ cardType }}</em>
+
+<!-- Exam Passed -->
+<ng-container *ngIf="cardType === 'examPassed'">
+  <mat-card class="exam-part-passed">
+    <mat-card-header class="header">
+      <ng-container *ngIf="!isDataLoaded; else dataLoaded">
+        <app-single-line-shimmer></app-single-line-shimmer>
+      </ng-container>
+      <ng-template #dataLoaded>
+        {{ cardTitle }}
+      </ng-template>
+    </mat-card-header>
+    <mat-list>
+      <mat-list-item>
+        <span matListItemTitle>Exam Administration:
+          {{ programsDetailInfo?.examPart1Info?.examAttemptAdminName }}</span>
+      </mat-list-item>
+      <mat-list-item>
+        <span matListItemTitle>Exam Results: Pass</span>
+      </mat-list-item>
+      <mat-list-item>
+        {{ message }}
+      </mat-list-item>
+    </mat-list>
+    <mat-card-footer>
+      <mat-card-actions align="start" class="card-actions">
+        <ng-container [ngSwitch]="cardType">
+          <ng-container>
+            <app-secondary-button text="View Results Details" icon="arrow_circle_right"></app-secondary-button>
+          </ng-container>
+        </ng-container>
+      </mat-card-actions>
+    </mat-card-footer>
+  </mat-card>
+</ng-container>
+
+<!-- CV Submission Required -->
+<ng-container *ngIf="cardType === 'cvSubmissionRequired'">
+  <mat-card>
+    <mat-card-header class="header">
+      <ng-container *ngIf="!isDataLoaded; else dataLoaded">
+        <app-single-line-shimmer></app-single-line-shimmer>
+      </ng-container>
+      <ng-template #dataLoaded>
+        {{ title }}
+      </ng-template>
+    </mat-card-header>
+    <mat-list-item>
+      <span matListItemTitle>Status:
+        Submission Needed</span>
+    </mat-list-item>
+    <mat-list-item>
+      <p>We will be unable to add you to our roster of Certified FRMs until you submit two years of relevant
+        risk
+        management professional work experience.
+      </p>
+      <p>Before you can become a Certified FRM you must submit two years of professional work experience. We
+        will
+        contact you in the even we require further information. In the interim, we encourage you to use the
+        following statement on your CV/resume: "I am currently accruing work experience to receive my FRM
+        designation."
+      </p>
+      <p>Please note: GARP requires candidates to submit their work experience within five years of sitting for
+        the
+        {{ 'examPart1' }}, or else they will be required to re-enroll in the FRM program as a new
+        candidate.
+      </p>
+    </mat-list-item>
+    <mat-card-footer>
+      <mat-card-actions align="start" class="card-actions">
+        <ng-container [ngSwitch]="cardType">
+          <ng-container *ngSwitchCase="'examPassed'">
+            <!-- <app-primary-button text="Register for Part II" [action]="payByCC"></app-primary-button> -->
+            <app-secondary-button text="View Results Details" icon="arrow_circle_right"></app-secondary-button>
+          </ng-container>
+          <ng-container *ngSwitchCase="'completed'">
+            <app-primary-button text="Share on Linkedin" [action]="payByCC">
+            </app-primary-button>
+            <app-secondary-button text="Request Copy of Certificate" icon="arrow_circle_right"
+              (buttonClick)="shareBadge()"></app-secondary-button>
+          </ng-container>
+        </ng-container>
+      </mat-card-actions>
+    </mat-card-footer>
+  </mat-card>
+</ng-container>
+
+<!-- Program Completed -->
+<ng-container *ngIf="cardType === 'completed'">
+  <mat-card-footer>
+    <mat-card-actions>
+      <app-primary-button text="Share on Linkedin" [action]="payByCC">
+      </app-primary-button>
+      <app-secondary-button text="Request Copy of Certificate" icon="arrow_circle_right" (buttonClick)="shareBadge()">
+      </app-secondary-button>
+    </mat-card-actions>
+  </mat-card-footer>
+</ng-container>

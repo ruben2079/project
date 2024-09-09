@@ -1,0 +1,77 @@
+@use "../../../styles/_variables" as var;
+@use "../../../styles/_mixins" as mixins;
+
+body ::ng-deep .mat-dialog-container {
+  border-radius: 25% !important;
+}
+
+.dialog-content {
+  width: auto;
+  margin: 0 0 20px 0;
+
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    @include mixins.dashcard-header;
+    color: var.$corporate-black;
+    font-size: 1.5rem;
+
+    &-text {
+      display: flex;
+      align-items: center;
+
+      mat-icon {
+        position: relative;
+        top: 5px;
+        padding-right: 10px;
+      }
+    }
+
+    &-close {
+        padding: 1px;
+
+        &:hover {
+          background-color: rgba(0, 0, 0, 0.1);
+        }
+    }
+  }
+}
+img {
+    border-radius: 50%;
+    box-sizing: border-box;
+    margin-right: 10px;
+    width: 45px;
+    height: 45px;
+    font-size: 28px;
+  }
+  .text-name{
+    color:#7257ff;
+    margin: 10px;
+  }
+  .sub-text{
+   color: #6e6969;
+   font-weight: 500;
+   margin: 10px;
+   font-size: 20px;
+  }
+  .d-flex{
+    display: flex;
+  }
+
+  .d-padding{
+    padding: 25px;
+  }
+
+  .dialog-body{
+
+    img {
+        border-radius: 50%;
+        box-sizing: border-box;
+        margin-right: 10px;
+        width: 75px;
+        height: 75px;
+        font-size: 28px;
+      }
+  }

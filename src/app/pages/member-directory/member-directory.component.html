@@ -1,0 +1,169 @@
+<div class="membership" *ngIf="!isLoading;">
+
+    <div class="text-center">
+      <h1>GARP Member Directory Search</h1>
+    </div>
+  
+    <div class="search-toolbar">
+      <mat-toolbar class="search-block bg-search" style="height:50px">
+        <mat-toolbar-row class="bg-search">
+          <input class="search-control" type="text" placeholder="Search" [(ngModel)]="searchText" #searchbar>
+          <button mat-icon-button (click)="fetchAdvancedSearch()">
+            <mat-icon>search</mat-icon>
+          </button>
+        </mat-toolbar-row>
+      </mat-toolbar>
+  
+    </div>
+    <div class="membership-container" *ngIf="hasAdvancedSearch; else noAdvancedSearch">
+      <h5 class="text-align-rht" *ngIf="hasAdvancedSearch" (click)="showAdvanced()">{{seachName}} <svg
+          style="margin-bottom: -5px; fill:#7257ff" viewBox="0 0 24 24" width="24px" height="24px" focusable="false">
+          <path d="M7 10l5 5 5-5z"></path>
+        </svg></h5>
+      <div class="mat-elevation-z4 bg-search tbl-pd" *ngIf="hideFlag">
+        <ng-container matColumnDef="industries">
+          <div>
+            <strong style="padding-left: 10px;"> Industries</strong>
+            <mat-form-field class="mat-multi">
+              <mat-select placeholder="None Selected" [formControl]="toppings" [(value)]="selectedIndustries" multiple>
+                <mat-option *ngFor="let industries of industriesList" [value]="industries">{{industries}}</mat-option>
+              </mat-select>
+  
+            </mat-form-field>
+            <div>
+              <button mat-mini-fab style="background-color: #7257ff;width: 12px;height: 12px;border-radius: 0;"
+                (click)="clearFilter($event)">
+                <mat-icon style="font-size: 12px;width: 12px;height: 12px">clear</mat-icon>
+              </button> <strong class="clr-text"> CLEAR FILTER</strong>
+            </div>
+          </div>
+        </ng-container>
+        <ng-container matColumnDef="jobFunctions">
+          <div>
+            <strong style="padding-left: 10px;"> Job Functions</strong>
+            <mat-form-field class="mat-multi">
+              <mat-select placeholder="None Selected" [formControl]="toppings" [(value)]="selectedJobFunctions" multiple>
+                <mat-option *ngFor="let jobFunctions of jobFunctionsList" [value]="jobFunctions">{{jobFunctions}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </ng-container>
+        <ng-container matColumnDef="professionallevel">
+          <div>
+            <strong style="padding-left: 10px;"> Professional Level</strong>
+            <mat-form-field class="mat-multi">
+              <mat-select placeholder="None Selected" [formControl]="toppings" [(value)]="selectedProfessionalLevel"
+                multiple>
+                <mat-option *ngFor="let professionalLevel of professionalLevelList" [value]="professionalLevel">
+                  {{professionalLevel}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </ng-container>
+        <ng-container matColumnDef="riskSpecialty">
+          <div>
+            <strong style="padding-left: 10px;">Specialty</strong>
+            <mat-form-field class="mat-multi">
+              <mat-select placeholder="None Selected" [formControl]="toppings" [(value)]="selectedRiskSpecialties"
+                multiple>
+                <mat-option *ngFor="let riskSpecialties of riskSpecialtiesList" [value]="riskSpecialties">
+                  {{riskSpecialties}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </ng-container>
+        <ng-container matColumnDef="cert">
+          <div>
+            <strong style="padding-left: 10px;">Certifications</strong>
+            <section class="align-checkbox">
+              <mat-checkbox color="primary" [(ngModel)]="isFRMOnly">FRM</mat-checkbox>
+              <mat-checkbox color="primary" [(ngModel)]="isERPOnly">ERP</mat-checkbox>
+              <mat-checkbox color='primary' [(ngModel)]="isSCROnly"> SCR</mat-checkbox>
+            </section>
+          </div>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+      </div>
+    </div>
+    <mat-nav-list *ngIf="isShowList;else noShow"
+      [ngClass]="{'container': (deviceType$ | async) !== 'mobile', 'container-mobile': (deviceType$ | async) === 'mobile'}">
+      <!-- PROFILE DATA LOADING: SHIMMER -->
+      <div *ngIf="!isLoaded; else dataLoadeds">
+        <H6>{{noResultText}}</H6>
+        <a mat-list-item class="profile-container">
+          <mat-icon>
+            account_circle
+          </mat-icon>
+          <span class="profile-shimmer">
+            <span>
+              <app-single-line-shimmer class="single-line-shimmer"></app-single-line-shimmer>
+            </span>
+            <span>
+              <app-single-line-shimmer class="single-line-shimmer"></app-single-line-shimmer>
+            </span>
+          </span>
+        </a>
+      </div>
+      <!-- PROFILE DATA IS LOADED -->
+      <ng-template #dataLoadeds>
+        <div>
+          <a mat-list-item class="profile-container" *ngFor="let member of obs | async" (click)="memberDetails(member)">
+            <img *ngIf="member.photoURL; else noAvatar" [src]="member.photoURL" #dataLoaded>
+            <ng-template #noAvatar>
+              <div>
+                <mat-icon>
+                  account_circle
+                </mat-icon>
+              </div>
+            </ng-template>
+            <span class="profile">
+              <span style="color:#7257ff">
+                {{member.name}} | <label style="color: #6e6969;
+                                  font-weight: 500;">{{member.mailingCity}}, {{member.mailingCountry}}</label>
+              </span>
+              <div style="font-size: 12px;">
+                <span *ngIf="member.isFRMCertified"> FRM Certified {{member.FRMCompletionDate}},</span>
+                <span *ngIf="member.isERPCertified"> ERP Certified {{member.ERPCompletionDate}},</span>
+                <span *ngIf="member.isSCRHolder"> SCR Certified {{member.SCRCompletionDate}}</span>
+              </div>
+              <span>
+              </span>
+            </span>
+            <span fxFlex="100%" fxLayout="column" fxLayoutAlign="space-around end" fxHide.lt-sm>
+              <div>
+                <span *ngIf="member.isERPCertified && (deviceType$ | async) === 'desktop'">
+                  <img *ngIf="member.isERPCertified; else noAvatar" [src]="erp" #dataLoaded>
+                </span>
+              </div>
+            </span>
+            <div>
+              <span *ngIf="member.isSCRHolder && (deviceType$ | async) === 'desktop'">
+                <img *ngIf="member.isSCRHolder; else noAvatar" [src]="scr" #dataLoaded>
+              </span>
+            </div>
+            <div>
+              <span *ngIf="member.isFRMCertified && (deviceType$ | async) === 'desktop'">
+                <img *ngIf="member.isFRMCertified; else noAvatar" [src]="frm" #dataLoaded>
+              </span>
+            </div>
+          </a>
+        </div>
+      </ng-template>
+      <mat-divider></mat-divider>
+      <mat-paginator *ngIf="memberData.length > 0" style="font-size: 18px;color: #7257ff;"
+        [pageSizeOptions]="[10, 20, 30, 40, 50]"></mat-paginator>
+    </mat-nav-list>
+  
+    <ng-template #noShow>
+      <div>
+        <h1 class="no-result-text"> {{noResultText}}</h1>
+      </div>
+    </ng-template>
+    <ng-template #noAdvancedSearch>
+      <div>
+        <h1 class="align-noadvace-seach"> To unlock the advanced search <a href="#">{{hasUpsellMembershipType}} your
+            Membership</a></h1>
+      </div>
+    </ng-template>
+  </div>

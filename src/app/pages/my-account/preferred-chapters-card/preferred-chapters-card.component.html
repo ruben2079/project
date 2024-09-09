@@ -1,0 +1,43 @@
+<mat-card class="shimmer-card" *ngIf="isloading">
+  <app-single-line-shimmer  height="1.5rem" width="350px"></app-single-line-shimmer>
+  <app-content-shimmer [itemCount]="5"></app-content-shimmer><br>
+  <app-single-line-shimmer  height="1.5rem" width="200px"></app-single-line-shimmer>
+  <app-content-shimmer [itemCount]="5"></app-content-shimmer><br>
+  <app-single-line-shimmer  height="1.5rem" width="200px"></app-single-line-shimmer>
+  <app-content-shimmer [itemCount]="5"></app-content-shimmer><br>
+</mat-card>
+<mat-card  class="member-directory" *ngIf="!isloading">
+    <mat-card-header class="header">
+        Preferred Chapters
+    </mat-card-header>
+    <mat-card-content>
+      <p>Stay on the cutting edge of risk management and make new connections by participating in your local chapter. As a member of the GARP community, you may attend our chapter meetings anywhere in the world and will always be welcome.</p>
+      <ng-container matColumnDef="primary-chapter">
+        <div>
+          <strong style="font-weight: 800;"> Primary Chapter</strong>
+          <mat-form-field class="mat-multi">
+            <mat-select placeholder="None Selected" (selectionChange)="setProfileChaptersInfo()" [formControl]="primaryChapterFromControl" [(ngModel)]="selectedPrimaryChapter" >
+              <mat-option *ngFor="let primaryChap of primaryChapterList" [value]="primaryChap">{{primaryChap}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </ng-container>
+      <ng-container matColumnDef="secondary-chapter">
+        <div>
+          <strong style="font-weight: 800;"> Secondary Chapter</strong>
+          <mat-form-field class="mat-multi">
+            <mat-select placeholder="None Selected" (selectionChange)="setProfileChaptersInfo()" [formControl]="secondaryChapterFromControl" [(ngModel)]="selectedSecondaryChapter" >
+              <mat-option *ngFor="let secondaryChap of secondaryChapterList" [value]="secondaryChap">{{secondaryChap}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </ng-container>
+    </mat-card-content>
+    <mat-card-footer>
+      <mat-card-actions align="start">
+        <!-- <app-secondary-button text="View Upcoming Meetings" class="view-upcoming-btn" (buttonClick)="seeAll()"></app-secondary-button> -->
+      <h5 class="view-upcoming-btn" (click)="seeAll()">View Upcoming Meetings</h5>
+      </mat-card-actions>
+    </mat-card-footer>

@@ -1,0 +1,27 @@
+<mat-card>
+  <mat-card-header class="header">
+    <mat-icon>calendar_month</mat-icon>
+    My Events
+  </mat-card-header>
+  <mat-list>
+    <ng-container
+      *ngFor="let event of (dashboardCardDetails?.upcomingEvents?.slice(0, 2) || []); let isLast=last; let isFirst=first;">
+      <div class="event">
+        <mat-list-item [ngClass]="{'no-vertical-margin': isLast}">
+          <span matListItemTitle>
+            <span class="event-type">{{ event.eventType }}</span> {{ event.eventStartDate | date:'MMM. d, yyyy' }}
+          </span>
+        </mat-list-item>
+        <mat-list-item>
+          <span class="event-title">{{ event.eventName }}</span>
+        </mat-list-item>
+      </div>
+    </ng-container>
+    <!-- <mat-divider *ngIf="!isFirst && !isLast"></mat-divider> -->
+  </mat-list>
+  <mat-card-footer>
+    <mat-card-actions align="end">
+      <app-secondary-button text="See All" icon="arrow_circle_right" routerLink="/events"></app-secondary-button>
+    </mat-card-actions>
+  </mat-card-footer>
+</mat-card>

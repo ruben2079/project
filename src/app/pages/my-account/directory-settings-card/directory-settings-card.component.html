@@ -1,0 +1,28 @@
+<mat-card class="shimmer-card" *ngIf="isloading">
+    <app-single-line-shimmer  height="1.5rem" width="350px"></app-single-line-shimmer>
+    <app-content-shimmer [itemCount]="5"></app-content-shimmer><br>
+    <app-single-line-shimmer  height="1.5rem" width="200px"></app-single-line-shimmer>
+    <app-content-shimmer [itemCount]="5"></app-content-shimmer><br>
+    <app-single-line-shimmer  height="1.5rem" width="200px"></app-single-line-shimmer>
+    <app-content-shimmer [itemCount]="5"></app-content-shimmer><br>
+  </mat-card>
+    <mat-card  class="member-directory" *ngIf="!isloading">
+        <mat-card-header class="header">
+        Directory Settings
+        </mat-card-header>
+        <mat-card-content>
+          <p>These settings allow you to adjust what is shown in your entry in the GARP Directory. The minimum amount of information required to be listed in the directory is contained in the Basic Information section below. Other 
+            categories allow you to share more information about your professional accomplishments and specialties. The Professional Background and Job Information categories will only be visible to fellow members.</p>
+        
+            <section class="align-checkbox">
+                <mat-checkbox color="primary" [(ngModel)]="isOptedIn" (change)="setMemberDirectorySettingsFormInfo()"><span>Member directory opt-in</span></mat-checkbox>
+                <mat-checkbox color="primary" [disabled]="!isOptedIn" [(ngModel)]="showJobInformation" (change)="setMemberDirectorySettingsFormInfo()"><span>Show my organization type & expertise</span></mat-checkbox>
+                <mat-checkbox color='primary' [disabled]="!isOptedIn" [(ngModel)]="showProfessionalBackground" (change)="setMemberDirectorySettingsFormInfo()">Show my job title and company</mat-checkbox>
+                <mat-checkbox color='primary' [disabled]="!isOptedIn" [(ngModel)]="isDirectoryConnectEnabled" (change)="setMemberDirectorySettingsFormInfo()">Allow other members to contact me</mat-checkbox>  
+            </section>
+        </mat-card-content>
+        <mat-card-footer>
+  
+        </mat-card-footer>
+    </mat-card>
+  

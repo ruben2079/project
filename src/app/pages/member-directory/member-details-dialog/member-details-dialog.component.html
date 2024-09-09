@@ -1,0 +1,117 @@
+<mat-dialog-content class="dialog-content" *ngIf="memberDetailsData">
+    <div class="dialog-content__header">
+        <div class="dialog-content__header-text">
+            <img *ngIf="memberDetailsData?.photoURL; else noAvatar" [src]="memberDetailsData?.photoURL" #dataLoaded>
+            <ng-template #noAvatar>
+                <div>
+                    <mat-icon>
+                        account_circle
+                    </mat-icon>
+                </div>
+            </ng-template>
+            <h3 class="text-name">{{memberDetailsData?.name}}</h3>
+        </div>
+        <div>
+            <button mat-icon-button mat-dialog-close class="mat-dialog__header-close">
+                <mat-icon>close</mat-icon>
+            </button>
+        </div>
+    </div>
+    <div class="dialog-content__body" cdkScrollable>
+        <div class="d-flex">
+            <div class="d-padding dialog-body">
+                <span fxLayout="column" fxLayoutAlign="space-around end" >
+                    <div>
+                        <span *ngIf="memberDetailsData?.isFRMCertified">
+                          <img *ngIf="memberDetailsData?.isFRMCertified; else noAvatar" [src]="frm">
+                        </span>
+                    </div>
+                    <div>
+                      <span *ngIf="memberDetailsData?.isERPCertified">
+                        <img *ngIf="memberDetailsData?.isERPCertified; else noAvatar" [src]="erp">
+                      </span>
+                    </div>
+                  </span>
+                  <div>
+                    <span *ngIf="memberDetailsData?.isSCRHolder">
+                      <img *ngIf="memberDetailsData?.isSCRHolder; else noAvatar" [src]="scr">
+                    </span>
+                  </div>
+
+            </div>
+            <div class="d-padding">
+                <label class="sub-text">{{memberDetailsData?.mailingCity}}, {{memberDetailsData?.mailingCountry}}</label>
+                <span class="sub-text" style="color: black;display: block;">
+                    <span *ngIf="memberDetailsData.isFRMCertified"> FRM Certified {{memberDetailsData.FRMCompletionDate}},</span>
+                    <span *ngIf="memberDetailsData.isERPCertified"> ERP Certified {{memberDetailsData.ERPCompletionDate}},</span>
+                    <span *ngIf="memberDetailsData.isSCRHolder"> SCR Certified {{memberDetailsData.SCRCompletionDate}}</span>
+
+                </span>
+                <div *ngIf="memberDetailsData.dirPrivacyJobInformation">
+                    <div class="sub-text">
+                        <label> Area Of Concentration: {{memberDetailsData.areaofConcentration}}</label>
+                    </div>
+                    <div class="sub-text">
+                        <label> Professional Designation: <span *ngIf="memberDetailsData.professionalDesignationCA">CA,</span><span *ngIf="memberDetailsData.professionalDesignationACCA">ACCA,</span>
+                            <span *ngIf="memberDetailsData.professionalDesignationCFA">CFA,</span><span *ngIf="memberDetailsData.professionalDesignationCMA">CMA,</span><span *ngIf="memberDetailsData.professionalDesignationCPA">CPA,</span><span *ngIf="memberDetailsData.professionalDesignationPMP">PMP,</span><span *ngIf="memberDetailsData.professionalDesignationOther">Other</span></label>
+                    </div>
+                    <div class="sub-text"  *ngIf="memberDetailsData?.otherQualifications">
+                        <label> Other Qualifications: {{memberDetailsData.otherQualifications}}</label>
+                    </div>
+                    <div  class="sub-text"  *ngIf="memberDetailsData?.jobFunction">
+                        <label> Job Function: {{memberDetailsData.jobFunction}}</label>
+                    </div>
+                    <div  class="sub-text" *ngIf="memberDetailsData?.riskSpecialty">
+                        <label> Risk Specialty: {{memberDetailsData.riskSpecialty}}</label>
+                    </div>
+                </div>
+                <div *ngIf="memberDetailsData?.dirPrivacyProfBackground">
+
+                    <div  class="sub-text" *ngIf="memberDetailsData?.corporateTitle">
+                        <label> Corporate Title : {{memberDetailsData?.corporateTitle}}</label>
+                    </div>
+
+                    <div  class="sub-text" *ngIf="memberDetailsData?.company">
+                        <label> Company : {{memberDetailsData?.company}}</label>
+                    </div>
+                </div>
+
+                <div *ngIf="memberDetailsData?.dirPrivacyAdditionalDetail">
+                    <div class="sub-text" *ngIf="memberDetailsData?.CPECurrentCycle">
+                        <label> CPD Current Cycle: {{memberDetailsData?.CPECurrentCycle}}</label>
+                    </div>
+                    <div class="sub-text" *ngIf="memberDetailsData?.CPELastCompletedCycle">
+                        <label> CPD Last Completed Cycle: {{memberDetailsData?.CPELastCompletedCycle}}</label>
+                    </div>
+                    <div class="sub-text" *ngIf="memberDetailsData?.CPERequirementStatus">
+                        <label> CPD Requirement Status: {{memberDetailsData?.CPERequirementStatus}}</label>
+                    </div>
+                </div>
+                <!-- <div  class="sub-text">
+                    <label> Financial Designation(s): {{memberDetailsData.firstName}}</label>
+                </div>
+
+                <div  class="sub-text">
+                    <label> Industry: {{memberDetailsData.firstName}}</label>
+                </div>
+                <div  class="sub-text">
+                    <label> Professional Level: {{memberDetailsData.firstName}}</label>
+                </div> -->
+
+                <div class="sub-text" *ngIf="memberDetailsData?.canSendMessage">
+                    <mat-form-field style="width: 100%;height: 150px;">
+                        <textarea matInput [disabled]="sentMessage" name="sendMsg" cols="35" rows="8" placeholder="Enter a message to send..." [(ngModel)]="sendMsg"
+                            required></textarea>
+                    </mat-form-field>
+                </div>
+                <div class="sub-text" *ngIf="memberDetailsData?.canSendMessage">
+                    <app-primary-button [disabled]="sentMessage" text="Send Message" (buttonClick)="sendMessage(memberDetailsData)"></app-primary-button>
+                </div>
+                <div class="sub-text" *ngIf="memberDetailsData?.canInvite">
+                    <app-primary-button [disabled]="sentMessage" text="Invite to Connect" (buttonClick)="inviteToConnect(memberDetailsData)"></app-primary-button>
+                </div>
+                <h4>{{message}}</h4>
+            </div>
+        </div>
+    </div>
+</mat-dialog-content>

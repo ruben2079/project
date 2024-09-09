@@ -1,0 +1,266 @@
+@use "../../styles/_variables" as var;
+@use "../../styles/_breakpoints" as bp;
+@use "../../styles/_mixins" as mixins;
+@use "../../styles/_fonts" as fonts;
+
+.my-cpd {
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+
+  .manage-container {
+    display: flex;
+    flex-direction: column;
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+
+      h2 {
+        font-family: map-get(fonts.$klinic-slab-bold, "font-family");
+        font-size: 34px;
+        font-weight: 900;
+      }
+    }
+
+    .breadcrumb-container {
+      font-weight: bold;
+      font-size: 14px;
+
+      mat-icon {
+        position: relative;
+        top: 6px;
+        margin-right: 6px;
+        color: var.$corporate-black;
+      }
+
+      .link {
+        cursor: pointer;
+        color: var.$bright-purple;
+      }
+    }
+  }
+
+  .cpd:only-child {
+    flex: 1 0 100%;
+  }
+
+  .content {
+    display: flex;
+    gap: 40px;
+    width: 100%;
+    padding: 20px 0px;
+
+    .left-container {
+      width: 68%;
+
+      @include bp.mobile {
+        width: 100%;
+      }
+
+      .filter-container {
+        padding: 20px;
+        margin-bottom: 32px;
+
+        .buttons-header {
+          font-weight: bold;
+          font-size: 20px;
+        }
+
+        ul {
+          display: flex;
+          padding:0;
+          width: 100%;
+
+          @include bp.mobile {
+            flex-direction: column;
+          }
+          @include bp.tablet-portrait {
+            flex-direction: column;
+          }
+          @include bp.desktop {
+            flex-direction: row;
+          }
+
+          li {
+            list-style-type: none;
+            margin-right: 20px;
+            padding: 10px 20px;
+            border-radius: 40px;
+            background-color: var.$deep-purple;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            color: white;
+
+            @include bp.tablet-portrait {
+              margin-bottom: 10px;
+            }
+            @include bp.mobile {
+              margin-bottom: 10px;
+            }
+            a {
+              text-decoration: none;
+              color: var.$corporate-black;
+            }
+          }
+        }
+      }
+    }
+
+    .cpd-chart {
+      width: 32%;
+
+      ::ng-deep mat-card {
+        min-height: 300px;
+        background-color: var.$light-cyan-gray;
+
+        canvas {
+          width: 100% !important;
+          height: 100% !important;
+        }
+      }
+
+      ::ng-deep mat-card {
+        canvas {
+          width: 100% !important;
+          height: 100% !important;
+        }
+      }
+
+      @include bp.mobile {
+        ::ng-deep mat-card {
+          margin-top: 32px;
+        }
+      }
+    }
+  }
+
+  h3 {
+    font-weight: bold;
+    font-family: map-get(fonts.$klinic-slab-bold, "font-family");
+    font-size: 24px;
+  }
+
+  .cycle-container {
+    display: flex;
+    margin-top: 24px;
+
+    .cycle-text {
+      font-weight: bold;
+      margin-right: 20px;
+    }
+
+    @include bp.mobile {
+      ::ng-deep mat-form-field{
+        width: 100%;
+      }
+    }
+  }
+}
+
+/* Tables styles */
+table {
+  width: 100%;
+  border-spacing: 0px;
+  border: 2px solid var.$gray;
+  border-bottom: 3px solid var.$gray;
+  border-radius: 10px;
+  padding: 20px 0px;
+
+  tr:nth-child(even) {
+    background-color: var.$off-white;
+  }
+
+  td {
+    padding: 10px 20px;
+    font-size: small;
+  }
+
+  .date {
+    font-weight: bold;
+    color:var.$corporate-black;
+  }
+
+  .credits {
+    font-weight: bold;
+    color:var.$dark-blue-gray;
+  }
+
+  .event-name {
+    .name-text {
+      cursor: pointer;
+      font-weight: 800;
+      margin-right: 20px;
+    }
+  }
+
+  .action-container {
+    position: relative;
+    top: 4px;
+
+    mat-icon {
+      cursor: pointer;
+      color: var.$bright-purple;
+      padding: 0px 8px;
+      font-size: 21px;
+    }
+
+    .details {
+      color: var.$bright-purple;
+      font-weight: 900;
+      cursor: pointer;
+    }
+  }
+
+  .no-cpd {
+    font-weight: bold;
+    text-align: center !important;
+    color: var.$gray-medium;
+  }
+}
+
+.shimmer-table {
+  width: 100%;
+  border-spacing: 0px;
+  border: 2px solid var.$gray;
+  border-bottom: 3px solid var.$gray;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+/* Styling for Mat-Form-Fields  */
+:host {
+  ::ng-deep {
+      .mdc-text-field--filled {
+          --mdc-filled-text-field-active-indicator-height: 0px;
+          --mdc-filled-text-field-focus-active-indicator-height: 2px;
+          --mdc-filled-text-field-container-shape: 4px;
+          border-top-left-radius: var(--mdc-filled-text-field-container-shape);
+          border-top-right-radius: var(--mdc-filled-text-field-container-shape);
+          border-bottom-right-radius: 0;
+          border-bottom-left-radius: 0;
+          border-radius: 10px;
+          border: 1px solid var.$gray;
+          width: 99.2%;
+          @include bp.mobile {
+              width: 98.2%;
+          }
+      }
+      .mdc-text-field--outlined {
+          border-radius: 10px;
+          border: 1px solid var.$white;
+          width: 99%;
+      }
+      .mat-mdc-card-content {
+          padding: 0;
+      }
+      .mat-mdc-button.mat-unthemed {
+          color: var.$white;
+      }
+
+      .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+          background-color: var.$white;
+      }
+  }
+}

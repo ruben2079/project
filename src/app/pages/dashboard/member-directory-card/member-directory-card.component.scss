@@ -1,0 +1,47 @@
+@use "../../../styles/_variables" as var;
+@use "../../../styles/_fonts" as fonts;
+@use "../../../styles/_mixins" as mixins;
+
+.member-directory {
+  .header {
+    @include mixins.dashcard-header;
+  }
+
+  mat-card-content {
+    @include mixins.dashcard-font;
+  }
+  .search-bar {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 300px;
+    background: white;
+    border-radius: 5px;
+    box-shadow: inset 0.5px 0.5px 3px rgba(0, 0, 0, 1);
+    padding: 5px;
+    margin-top: 20px;
+  }
+  .search-bar button {
+    background: none;
+    border: none;
+  }
+
+  .search-bar input {
+    flex-grow: 1;
+    border: none;
+    outline: none;
+    font-size: 12px;
+  }
+
+  .search-bar i {
+    color: gray;
+    margin-left: 5px;
+  }
+
+  .search-bar mat-icon {
+    background: none !important;
+  }
+  button{
+    cursor: pointer;
+  }
+}
